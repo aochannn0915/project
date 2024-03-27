@@ -1,0 +1,32 @@
+<div class="sample_1">
+新規登録
+</div>
+<div class="sample_2">
+戻る
+</div>
+<div class="sample_3">
+詳細
+</div>
+<div class="sample_4">
+削除
+</div>
+
+
+.sample_1{
+    color:orange;
+}
+.sample_2{
+    color:blue;
+}
+.sample_3{
+    color:red;
+}
+.sample_4{
+    color:skyblue;
+}
+p{
+    margin:10px 20px;
+}
+div{
+    padding:20px;
+}
