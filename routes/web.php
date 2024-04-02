@@ -18,8 +18,8 @@ use App\Http\Controllers\ProductesController;
 Route::get('/', function () {
    return view('app');
 });
-Route::get('/list', [App\Http\Controllers\ProductesController::class, 'showList'])->name('list');//商品一覧画面
 
+Route::get('/list', [App\Http\Controllers\ProductesController::class, 'showList'])->name('list');//商品一覧画面
 Route::get('/detail/{id}', [App\Http\Controllers\ProductesController::class, 'showDetail'])->name('detail');
 //Route::get('/detai/{id}/',[App\Http\Controllers\ProductesController::class, 'Detail'])->name('detail');//詳細追加
 Route::get('/edit/{id}',[App\Http\Controllers\ProductesController::class, 'showEdit'])->name('edit');
@@ -28,9 +28,10 @@ Route::post('/update', [App\Http\Controllers\ProductesController::class, 'update
 Route::get('/delete/{id}', [App\Http\Controllers\ProductesController::class, 'delete'])->name('delete');//削除
 Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'regist'])->name('regist');//新規登録
 Route::get('/search', [App\Http\Controllers\ProductesController::class, 'search'])->name('search');//検索
+Route::get('/login', [App\Http\Controllers\ProductesController::class, 'login'])->name('login');
+Route::post('/login', [App\Http\Controllers\ProductesController::class, 'login'])->name('login');
+Route::get('/register',[App\Http\Controllers\ProductesController::class, 'register'])->name('register');
+Route::post('/register',[App\Http\Controllers\ProductesController::class, 'register'])->name('register');
 
-//Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'showRegistForm'])->name('registSubmit');
-//Route::get('/edit/{id}', [App\Http\Controllers\ProductesController::class, 'showEdit'])->name('edit');
-//Route::get('/edit/{id}', [App\Http\Controllers\ProductesController::class, 'registEdit'])->name('registEdit');
-//Route::get('/productes/{id}', [App\Http\Controllers\ProductesController, 'destroy'])->name('destory');
+
 

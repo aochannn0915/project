@@ -11,6 +11,18 @@ use Illuminate\Support\Facades\DB;
 
 class ProductesController extends Controller
 {
+  //login 
+  public function login(){
+    $model= new Productes();
+    $productes = $model->login();
+    return view('auth.login', ['productes' => $productes]);
+  }
+  //register
+  public function register(){
+    $model= new Productes();
+    $productes = $model->register();
+    return view('auth.register', ['productes' => $productes]);
+  }
   //リレーション
   public function showRelation(){
     $model = new Productes();
@@ -21,12 +33,21 @@ class ProductesController extends Controller
   public function showList(){
     $product_model= new Productes();
     $productes = $product_model->showRelation();
-    $company_model= new Company();
-    $companies = $company_model->getall();
-    $productes = Product::with('company')->get();
+    $company_model= new Companies();
+    $companies = $company_model->getAll();
+    //$productes = Product::with('company')->get();
     return view('list',['productes' => $productes,'companies' => $companies]);
   }
-  
+  //検索機能
+  public function search(Request $request){
+    $company_id = $request->input('company_id');
+    $keyword=$request->input('keyword');
+    $model = new Productes();
+    $company_model= new Companies();
+    $companies = $company_model->getAll();
+    $productes=$model->searchProductes($keyword,$company_id);
+    return view('list',['productes' => $productes,'companies' => $companies]);
+  }
 
   //新規登録画面regist
   public function Regist(){
@@ -85,13 +106,7 @@ class ProductesController extends Controller
   //   return view('edit', ['productes' => $productes]);
   // }
   
-   //検索機能
-  public function search(Request $request){
-    $company_id = $request->input('company_id');
-    $model = new Productes();
-    $model->searchProductes($request,$company_id);
-    return view('list');
-  }
+   
    ///更新
   public function updateProductes(Request $request, $id){
     DB::beginTransaction();

@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\DB;
 class Productes extends Model
 
 {
+    //login
+    public function login(){
+        $productes = Productes::all();
+        return $productes;
+    }
+    //register
+    public function register() {
+        $productes = Productes::all();
+        return $productes;
+    }
     //リレーション
     public function showRelation(){
         $productes = DB::table('productes')
@@ -19,14 +29,27 @@ class Productes extends Model
     }
     //一覧画面
     public function getList() {
-        $productes = Product::all();
+        $productes = Productes::all();
         return $productes;
-       
     }
-    public function getAll(){
-        $companies=Companies::all();
-        return $companies;
+    ///検索
+    public function searchProductes($keyword,$company_id){
+        $query= DB::table('productes')
+        ->join('companies', 'productes.company_id', '=', 'companies.id')
+        ->select('productes.*','companies.company_name');
+        if($company_id){
+           $query->where('productes.company_id', '=', $company_id);
+        }
+       if($keyword){
+        $query->where('name','like','%%')->get();
+       }
+        $productes = $query->get();
+        return $productes;
     }
+    // public function getAll(){
+    //     $companies=Companies::all();
+    //     return $companies;
+    // }
    //新規登録画面regist
    public function Regist() {
         $productes = DB::table('productes')->get();
@@ -54,15 +77,7 @@ class Productes extends Model
     //     $productes=Productes::find($id);
     //     return $productes;
     // }
-     ///検索
-     public function searchProductes($request,$company_id){
-        $query= DB::table('productes');
-        if($company_id){
-           $query->where('productes.company_id', '=', $company_id);
-        }
-        $productes = $query->get();
-        return $productes;
-    }
+     
     //更新
     public function updateProductes($request, $id){
         DB::table('productes')

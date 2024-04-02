@@ -9,14 +9,13 @@
                 <form action="{{ route('search') }}" method="GET">
                     @csrf
                     <input placeholder="検索キーワード" input type="text" name="keyword">
-                    <select class="" id="company_id" name="company_id"> 
-                    <select input type="text" name="keyword" >
-                    <select class="" id="company_id" name="company_id">
+                    <select class="company_id" id="company_id" name="company_id"> 
+                    
                         @foreach($companies as $company)
-                        <option value="{{ $company -> id }}{{ $company -> company_name }}"></option>
+                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select>
-                        <input type="submit" value="検索">
+                    <input type="submit" value="検索">  
                 </form>
                 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 

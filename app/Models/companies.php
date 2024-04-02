@@ -9,11 +9,14 @@ use Illuminate\Support\Facades\DB;
 
 class companies extends Model
 {
-    
-    public function getCompany(){
-        $companies=DB::table('companies')->get();
+    public function getAll(){
+        $companies=Companies::all();
         return $companies;
     }
+    // public function getCompany(){
+    //     $companies=DB::table('companies')->get();
+    //     return $companies;
+    // }
 //public function getList() {
         // productesテーブルからデータを取得
        // $productes = DB::table('productes')->get();
