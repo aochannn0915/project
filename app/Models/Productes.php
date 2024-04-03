@@ -46,10 +46,7 @@ class Productes extends Model
         $productes = $query->get();
         return $productes;
     }
-    // public function getAll(){
-    //     $companies=Companies::all();
-    //     return $companies;
-    // }
+    
    //新規登録画面regist
    public function Regist() {
         $productes = DB::table('productes')->get();
@@ -58,25 +55,15 @@ class Productes extends Model
     //詳細
     public function getDetail($id) {
         $productes=Productes::find($id);
-        // $productes = DB::table('productes')->get();
         return $productes;
     }
-    ///詳細ボタン
-    // public function Detail($id) {
-    //     $productes=Productes::find($id);
-    //     return $productes;
-    // }
+    
     //編集
     public function getEdit($id) {
         $productes=Productes::find($id);
-        //$productes = DB::table('productes')->get();
         return $productes;
     }   
-    ///編集ボタン
-    // public function Edit($id) {
-    //     $productes=Productes::find($id);
-    //     return $productes;
-    // }
+    
      
     //更新
     public function updateProductes($request, $id){

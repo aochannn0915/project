@@ -21,9 +21,7 @@ Route::get('/', function () {
 
 Route::get('/list', [App\Http\Controllers\ProductesController::class, 'showList'])->name('list');//商品一覧画面
 Route::get('/detail/{id}', [App\Http\Controllers\ProductesController::class, 'showDetail'])->name('detail');
-//Route::get('/detai/{id}/',[App\Http\Controllers\ProductesController::class, 'Detail'])->name('detail');//詳細追加
 Route::get('/edit/{id}',[App\Http\Controllers\ProductesController::class, 'showEdit'])->name('edit');
-//Route::get('/edit/{id}/', [App\Http\Controllers\ProductesController::class, 'Edit'])->name('edit');//編集追加
 Route::post('/update', [App\Http\Controllers\ProductesController::class, 'update'])->name('update');//更新
 Route::get('/delete/{id}', [App\Http\Controllers\ProductesController::class, 'delete'])->name('delete');//削除
 Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'regist'])->name('regist');//新規登録

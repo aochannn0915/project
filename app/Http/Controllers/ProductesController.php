@@ -35,7 +35,6 @@ class ProductesController extends Controller
     $productes = $product_model->showRelation();
     $company_model= new Companies();
     $companies = $company_model->getAll();
-    //$productes = Product::with('company')->get();
     return view('list',['productes' => $productes,'companies' => $companies]);
   }
   //検索機能
@@ -55,11 +54,7 @@ class ProductesController extends Controller
     $productes = $productes_model->Regist();
     return view('regist', ['productes' => $productes]);
   }
-        //詳細ボタン
-      //public function show($id) {
-      //$productes = Productes::find($id);
-      //return view('detail', compact('detail'));
-  //}
+      
   
   //更新
   public function upDate(Request $request,$id){
@@ -87,26 +82,13 @@ class ProductesController extends Controller
     $productes = $productes_model->getDetail($id);
     return view('detail', ['productes' => $productes]);
   }
-  //詳ボタン
-  // public function Detail($id){
-  //   $productes_model= new Productes();
-  //   $productes = $productes_model->Detail($id);
-  //   return view('detail', ['productes' => $productes]);
-  // }
+  
    //商品編集
   public function showEdit($id){
     $productes_model= new Productes();
     $productes = $productes_model->getEdit($id);
       return view('edit', ['productes' => $productes]);
   }
-  ///編集ボタン
-  // public function Edit($id){
-  //   $productes_model= new Productes();
-  //   $productes = $productes_model->Edit(id);
-  //   return view('edit', ['productes' => $productes]);
-  // }
-  
-   
    ///更新
   public function updateProductes(Request $request, $id){
     DB::beginTransaction();
@@ -136,25 +118,13 @@ class ProductesController extends Controller
     
   }  
     public function Image(Request $request) {
-      //①画像ファイルの取得
       $image = $request->file('image');
-      
-      //②画像ファイルのファイル名を取得
       $file_name = $image->getClientOriginalName();
-      
-      //③storage/app/public/imagesフォルダ内に、取得したファイル名で保存
       $image->storeAs('public/images', $file_name);
-      
-      //④データベース登録用に、ファイルパスを作成
       $image_path = 'storage/images/' . $file_name;
-
-      //モデルのインスタンス化
       $model = new Productes();
-
-      //トランザクション開始
             DB::beginTrasnsaction();
       try{
-        //⑤モデルのregistArticle関数を呼び出し。
         $model->registProductes($image_path);
         DB::commit();
       }catch(Exception $e){
