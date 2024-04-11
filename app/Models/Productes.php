@@ -38,7 +38,7 @@ class Productes extends Model
         ->join('companies', 'productes.company_id', '=', 'companies.id')
         ->select('productes.*','companies.company_name');
         if($company_id){
-           $query->where('productes.company_id', '=', $company_id);
+           $query->where('productes.company_id', '=', $company_id)->get();
         }
        if($keyword){
         $query->where('name','like','%%')->get();
@@ -46,15 +46,23 @@ class Productes extends Model
         $productes = $query->get();
         return $productes;
     }
-    
-   //新規登録画面regist
-   public function Regist() {
-        $productes = DB::table('productes')->get();
-        return $productes;
-    }
     //詳細
     public function getDetail($id) {
         $productes=Productes::find($id);
+        return $productes;
+    }
+    ///詳細 検索
+    public function searchDetail($img_path,$product_name,$company_name, $price,$comment){
+        $query= DB::table('productes')
+        ->join('companies', 'productes.company_id', '=', 'companies.id')
+        ->select('productes.*','companies.company_name');
+        if($img_path){
+           $query->where('productes.company_id', '=', $company_id);
+        }
+       if($keyword){
+        $query->where('name','like','%%')->get();
+       }
+        $productes = $query->get();
         return $productes;
     }
     
@@ -76,10 +84,14 @@ class Productes extends Model
            'stock' => $request->input('stock')
         ]);
      }
-    //新規登録
-    public function insertProduct($request){
-        DB::table('productes')
-            ->insert([
+      //新規登録画面regist
+    public function Regist() {
+        $productes = DB::table('productes')->get();
+        return $productes;
+    }
+    //新規登録処理
+    public function registProduct($request){
+        DB::table('productes')->insert([
         'product_name' => $request->input('product_name'),
         'company_name' => $request->input('company_name'),
         'price' => $request->input('price'),

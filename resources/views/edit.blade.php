@@ -13,7 +13,7 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="product_name">ID</label></td>
-                    <td><input type="text" class="form-inline"id="id" name="id" ></td>
+                    <td>1.</td>
                 </div>
                 </tr>
                 <tr>
@@ -53,10 +53,13 @@
                 </div>
                 </tr>
                 <tr>
+                </form>
                     <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <form action="route('regist')" method="POST" enctype='multipart/form-data'>
-	                <td><input type="file" name="image"> </form></td>
+                    <form action="route('edit')" method="POST" enctype='multipart/form-data'>
+	                <td><input type="file" name="image">
+                </form></td>
+                </tr>
                 </div>
                 </tr>
                 <form>

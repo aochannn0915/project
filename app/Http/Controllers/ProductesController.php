@@ -47,32 +47,31 @@ class ProductesController extends Controller
     $productes=$model->searchProductes($keyword,$company_id);
     return view('list',['productes' => $productes,'companies' => $companies]);
   }
-
-  //新規登録画面regist
-  public function Regist(){
-    $productes_model= new Productes();
-    $productes = $productes_model->Regist();
-    return view('regist', ['productes' => $productes]);
-  }
-      
-  
   //更新
   public function upDate(Request $request,$id){
     $productes = Productes::find;
     $updateList = $this->productes->updateList($request, $productes);
     return redirect()->route('list');
   }     
-  
-  //新規登録
-  public function insertProduct(Request $request){
+  //新規登録画面regist
+   public function Regist(){
+    $productes_model= new Productes();
+    $productes = $productes_model->Regist();
+    return view('list', ['productes' => $productes]);
+   }
+  //新規登録処理
+  public function showRegistform(){
+    return view('regist');
+  }
+  public function registsubmit(Request $request){
     DB::beginTransaction();
     try {
     $model = new Productes();
-    $model->insertProduct($request);
+    $model->registProduct($request);
     DB::commit();
     } catch (\Exception $e) {
         DB::rollback();
-        //return back();
+        return back();
     }
     return redirect()->route('regist');
   }
@@ -82,6 +81,17 @@ class ProductesController extends Controller
     $productes = $productes_model->getDetail($id);
     return view('detail', ['productes' => $productes]);
   }
+  // //検索 詳細
+  // public function searchDetail(Request $request){
+  //   $img_path = $request->input('img_path');
+  //   $product_name = $request->input('product_name');
+  //   $company_name= $request->input('company_name');
+  //   $price = $request->input('price');
+  //   $comment= $request->input('comment');
+  //   $productes_model= new productes();
+  //   $productes_$model->searchDetail($img_path,$product_name,$company_name, $price,$comment);
+  //   return view('detail',['productes' => $productes,]);
+  // }
   
    //商品編集
   public function showEdit($id){

@@ -45,7 +45,7 @@
                         <td>{{ $productes -> price }}</td>
                         <td>{{ $productes -> stock}}</td>
                         <td>{{ $productes -> company_name}}</td>
-                        <td><a href="{{route('detail',['id'=>$productes->id])}}"><button type="button" class="btn btn-primary">詳細</button></a></td>
+                        <td><a href="{{route('edit',['id'=>$productes->id])}}"><button type="button" class="btn btn-primary">編集</button></a></td>
                         <td><a href="{{route('delete',['id'=>$productes->id]) }}" method="GET"></a></td>
                         <td>
                             <form action="{{route('delete',['id'=>$productes->id])}}" method="GET">

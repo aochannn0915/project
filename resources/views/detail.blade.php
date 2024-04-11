@@ -16,7 +16,7 @@
                 <tr>
                 <div class="form-group">
                    <td><label for="product_name">ID</label></td>
-                   <td><input type="text" class="form-inline"id="id" name="id" placeholder="1"></td>
+                  <td>1.</td>
                 </div>
                 </tr>
                 <tr>
