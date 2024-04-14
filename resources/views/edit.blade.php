@@ -19,7 +19,7 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="price">商品名*</label></td>
-                    <td><input type="text" class="form-inline"id="product_name" name="product_name"></td>
+                    <td><input type="text" class="form-inline" id="product_name" name="product_name"></td>
                 </div>
                 </tr>
                 <tr>
@@ -37,13 +37,13 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="comment">価格*</label></td>
-                    <td><input type="text" class="form-inline"id="price" name="price" ></td>
+                    <td><input type="text" class="form-inline"id="price" name="price"></td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">在庫数*</label> </td>
-                    <td><input type="text" class="form-inline"id="stock" name="stock" ></td> 
+                    <td><input type="text" class="form-inline"id="stock" name="stock"></td> 
                 </div>
                 </tr>
                 <tr>

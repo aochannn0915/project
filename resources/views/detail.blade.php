@@ -22,37 +22,37 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="company_name">商品画像</label></td>
-                    <td><label><input type="text" class="form-inline"id="img_path" name="img_path" placeholder="画像" ></td>             
+                    <td>{{$productes->img_path}}</td>        
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="price">商品名</label></td>
-                    <td><input type="text" class="form-inline"id="product_name" name="product_name" placeholder="コーラー"> </td>
+                    <td>{{$productes->product_name}}</td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="stock">メーカー</label></td>
-                    <td><input type="text" class="form-inline" id="company_name" name="company_name" placeholder="コカコーラー"></td>
+                    <td>{{$productes->company_name}}</td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="comment">価格</label></td>
-                    <td><lavel><input type="text" class="form-inline"id="price" name="price" placeholder="¥130"></td>
+                    <td>{{$productes->price}}</td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">在庫数</label></td>
-                    <td><input type="text" class="form-inline"id="stock" name="stock" placeholder="6"></td>
+                    <td>{{$productes->stock}}</td>
                 </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                     <td><label for="comment">コメント</label></td>
-                    <td><input textarea type="text" class="form-inline"id="comment" name="comment" placeholder="〇〇～" ></textarea></td>
+                    <td>{{$productes->comment}}</td>
                 </div>
                 </tr>
                 <tr>

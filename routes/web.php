@@ -19,8 +19,8 @@ Route::get('/', function () {
    return view('app');
 });
 Route::get('/list', [App\Http\Controllers\ProductesController::class, 'showList'])->name('list');//商品一覧画面
-//Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'showRegistform'])->name('regist');//
-//Route::post('/regist', [App\Http\Controllers\ProductesController::class, 'registsubmit'])->name('submit');//
+Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'showRegistform'])->name('regist');
+Route::post('/regist', [App\Http\Controllers\ProductesController::class, 'registsubmit'])->name('regist');
 Route::get('/detail/{id}', [App\Http\Controllers\ProductesController::class, 'showDetail'])->name('detail');
 Route::get('/edit/{id}',[App\Http\Controllers\ProductesController::class, 'showEdit'])->name('edit');
 Route::post('/update', [App\Http\Controllers\ProductesController::class, 'update'])->name('update');//更新//

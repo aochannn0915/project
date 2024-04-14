@@ -89,15 +89,19 @@ class Productes extends Model
         $productes = DB::table('productes')->get();
         return $productes;
     }
+    //新規登録画面regist
+    public function showRegistForm() {
+        return productes::all();
+    }
     //新規登録処理
-    public function registProduct($request){
-        DB::table('productes')->insert([
+    public function registsubmit($request){
+       DB::table('productes')->insert([
         'product_name' => $request->input('product_name'),
         'company_name' => $request->input('company_name'),
         'price' => $request->input('price'),
         'stock' => $request->input('stock'),
         ]);
-    }
+     }
       //削除
      public function deleteProductes($id){
         DB::table('productes')->where('id', '=', $id)->delete();

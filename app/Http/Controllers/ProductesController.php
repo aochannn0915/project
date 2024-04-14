@@ -54,27 +54,29 @@ class ProductesController extends Controller
     return redirect()->route('list');
   }     
   //新規登録画面regist
-   public function Regist(){
+   public function Regist(Request $request){
     $productes_model= new Productes();
     $productes = $productes_model->Regist();
-    return view('list', ['productes' => $productes]);
+    return view('regist', ['productes' => $productes]);
    }
+   
   //新規登録処理
-  public function showRegistform(){
-    return view('regist');
-  }
-  public function registsubmit(Request $request){
-    DB::beginTransaction();
-    try {
-    $model = new Productes();
-    $model->registProduct($request);
-    DB::commit();
-    } catch (\Exception $e) {
-        DB::rollback();
-        return back();
-    }
+  public function showRegistform(Request $request){
+    //$productes = $this->book->InsertBook($request);
     return redirect()->route('regist');
   }
+     public function registsubmit(Request $request){
+       DB::beginTransaction();
+       try {
+       $model = new Productes();
+       $model->registsubmit($request);
+       DB::commit();
+       } catch (\Exception $e) {
+           DB::rollback();
+           return back();
+       }
+       return redirect()->route('regist');
+     }
   //詳細画面表示detail
   public function showDetail($id){
     $productes_model= new Productes();

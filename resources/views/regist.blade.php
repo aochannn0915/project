@@ -8,6 +8,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <h1>商品新規登録画面</h1>
             <form class="center" action="" method="get">
+            <form action="{{ route('submit') }}" method="post">
               @csrf
                <table>
                 <tr>
