@@ -90,16 +90,17 @@ class Productes extends Model
         return $productes;
     }
     //新規登録画面regist
-    public function showRegistForm() {
-        return productes::all();
+    public function RegistForm() {
+        return $productes;
     }
     //新規登録処理
     public function registsubmit($request){
        DB::table('productes')->insert([
         'product_name' => $request->input('product_name'),
-        'company_name' => $request->input('company_name'),
+        'company_id' => $request->input('company_id'),
         'price' => $request->input('price'),
         'stock' => $request->input('stock'),
+        'img_path' => $request->input('img_path'),
         ]);
      }
       //削除

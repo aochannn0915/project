@@ -57,14 +57,15 @@ class ProductesController extends Controller
    public function Regist(Request $request){
     $productes_model= new Productes();
     $productes = $productes_model->Regist();
-    return view('regist', ['productes' => $productes]);
+    $company_model= new Companies();
+    $companies = $company_model->getAll();
+    return view('regist', ['productes' => $productes,'companies' => $companies]);
    }
    
   //新規登録処理
-  public function showRegistform(Request $request){
-    //$productes = $this->book->InsertBook($request);
-    return redirect()->route('regist');
-  }
+  public function Registform(){
+    return view('list');
+   }
      public function registsubmit(Request $request){
        DB::beginTransaction();
        try {
@@ -75,7 +76,7 @@ class ProductesController extends Controller
            DB::rollback();
            return back();
        }
-       return redirect()->route('regist');
+       return redirect()->route('list');
      }
   //詳細画面表示detail
   public function showDetail($id){
