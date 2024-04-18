@@ -7,8 +7,8 @@
         <div class="row">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <h1>商品新規登録画面</h1>
-            <form class="center" action="" method="get">
-            <form action="{{ route('submit') }}" method="post">
+            
+            <form action="{{ route('submit') }}" method="post" enctype='multipart/form-data'>
               @csrf
                <table>
                 <tr>
@@ -54,11 +54,11 @@
                 </div>
                 </tr>
                 <div>
-                <form> 
+                
                 <a href="{{ route('list') }}" method="GET">
                     <td><button type="submit" class="btn btn-primary">新規登録</button></td>
                     <td><button type="button" onClick="history.back()">戻る</button></td>
-                </form>
+               
                 </table>
             </form>
         </div>

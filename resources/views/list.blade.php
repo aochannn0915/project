@@ -28,12 +28,9 @@
                         <th>価格</th>
                         <th>在庫数</th>
                         <th>メーカー名</th>
-                        <th>
-                           <form> 
-                           
+                        <th> 
                            <td><a href="{{route('regist')}}"><button type="button" class="btn btn-primary">新規登録</button></a></td>
                            
-                           </form>
                         </th>
                 </thead>
                 <tbody>
@@ -60,7 +57,6 @@
                 @endforeach
                 </tbody>
             </table>
-            </form>
         </div>
     </div>
 @endsection

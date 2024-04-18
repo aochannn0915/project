@@ -100,7 +100,8 @@ class Productes extends Model
         'company_id' => $request->input('company_id'),
         'price' => $request->input('price'),
         'stock' => $request->input('stock'),
-        'img_path' => $request->input('img_path'),
+        'comment' => $request->input('comment'),
+        'img_path' => $request->input('image'),
         ]);
      }
       //削除
