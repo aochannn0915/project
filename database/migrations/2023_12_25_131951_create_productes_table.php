@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('stock');
             $table->text('comment');
             $table->string('img_path');
+            $table->timestamp('created_at');
+            $table->timestamp('updated_at');
             $table->timestamps();	
         });
     }
