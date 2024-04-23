@@ -29,7 +29,7 @@
                         <th>在庫数</th>
                         <th>メーカー名</th>
                         <th> 
-                           <td><a href="{{route('regist')}}"><button type="button" class="btn btn-primary">新規登録</button></a></td>
+                           <td><a href="{{route('regist')}}"method="post"></a><button type="button" class="btn btn-primary">新規登録</button></td>
                            
                         </th>
                 </thead>
@@ -41,8 +41,8 @@
                         <td>{{ $productes -> product_name }}</td>
                         <td>{{ $productes -> price }}</td>
                         <td>{{ $productes -> stock}}</td>
-                        <td>{{ $productes -> company_id}}</td>
-                        <td><a href="{{route('edit',['id'=>$productes->id])}}"><button type="button" class="btn btn-primary">編集</button></a></td>
+                        <td>{{ $productes -> company_name}}</td>
+                        <td><a href="{{route('detail',['id'=>$productes->id])}}">詳細</a></td>
                         <td><a href="{{route('delete',['id'=>$productes->id]) }}" method="GET"></a></td>
                         <td>
                             <form action="{{route('delete',['id'=>$productes->id])}}" method="GET">

@@ -25,13 +25,13 @@
                 <tr>
                 <div class="form-group">
                    <td> <label for="stock">メーカー名*</label></td>
-                  <td><select input type="text" name="keyword" >
-                        <option value="メーカー名">メーカー名</option>
-                        <option value="コカ・コーラ">コカ・コーラ</option>
-                        <option value="サントリー">サントリー</option>
-                        <option value="キリン">キリン</option>
-                        <option value="伊右衛門">茶</option>
-                      </select></td>
+                   <td><select class="company_id" id="company_id" name="company_id"> 
+                    
+                        @foreach($companies as $company)
+                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
+                        @endforeach
+                    </select>
+                   </td>
                 </div>
                 </tr>
                 <tr>
@@ -53,7 +53,7 @@
                 </div>
                 </tr>
                 <tr>
-                </form>
+                
                     <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
                     <form action="route('edit')" method="POST" enctype='multipart/form-data'>
@@ -61,16 +61,16 @@
                 </form></td>
                 </tr>
                 </div>
-                </tr>
+                <tr>
                 <form>
-                <a href="{{ route('update')}}" method="post">
+                <form action="{{ route('update')}}" method="post"></a>
                 <td><button type="submit" class="btn btn-success">更新</button></td>
                 <td><button type="button" onClick="history.back()">戻る</button></td>
                 </form>
                            
                 </table>
-            </form>
+            
         </div>
-    </d
+    </div>
 @endsection
 

@@ -27,9 +27,9 @@ Route::post('/update', [App\Http\Controllers\ProductesController::class, 'update
 Route::get('/delete/{id}', [App\Http\Controllers\ProductesController::class, 'delete'])->name('delete');//削除
 Route::get('/regist', [App\Http\Controllers\ProductesController::class, 'regist'])->name('regist');//新規登録
 Route::get('/search', [App\Http\Controllers\ProductesController::class, 'search'])->name('search');//検索
-Route::get('/logi', [App\Http\Controllers\ProductesController::class, 'login'])->name('logi');
-Route::post('/login', [App\Http\Controllers\ProductesController::class, 'login'])->name('login');
-Route::get('/registers',[App\Http\Controllers\ProductesController::class, 'register'])->name('registers');
+Route::get('/login', [App\Http\Controllers\ProductesController::class, 'login'])->name('login1');//login
+Route::post('/login', [App\Http\Controllers\ProductesController::class, 'login'])->name('login');//login処理
+Route::get('/register',[App\Http\Controllers\ProductesController::class, 'register'])->name('registers');
 Route::post('/register',[App\Http\Controllers\ProductesController::class, 'register'])->name('register');
 
 

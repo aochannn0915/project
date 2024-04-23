@@ -89,10 +89,13 @@ class ProductesController extends Controller
   public function showEdit($id){
     $productes_model= new Productes();
     $productes = $productes_model->getEdit($id);
-      return view('edit', ['productes' => $productes]);
+    $company_model= new Companies();
+    $companies = $company_model->getAll($id);
+    return view('list', ['productes' => $productes,'companies' => $companies]);
   }
+ 
    ///更新
-  public function updateProductes(Request $request, $id){
+  public function updateProductes(Request $request){
     DB::beginTransaction();
     try {
     $model = new Productes();
@@ -102,7 +105,7 @@ class ProductesController extends Controller
       DB::rollback();
       //return back();
   }
-    return redirect()->route('edit');
+    return redirect()->route('list');
  }
   //削除
  

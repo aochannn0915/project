@@ -57,7 +57,7 @@
                 </tr>
                 <tr>
                 <div class="col-sm-offset-2 col-sm-10 text-left">
-                <td><a href="{{route('edit',['id'=> $productes->id])}}"><button type="button" class="btn btn-primary">編集</button></a></td>
+                <td><a href="{{route('edit',['id'=> $productes->id])}}" class="button-link">編集</button></a></td>
                 <td><button type="button" onClick="history.back()">戻る</button></td>
                 </div>
                 </tr>

@@ -13,7 +13,11 @@ class companies extends Model
         $companies=Companies::all();
         return $companies;
     }
-   
+   //新規登録画面regist
+   public function Regist() {
+    $companies = DB::table('companies')->get();
+    return $productes;
+}
     public function registProductes($image_path){
          DB::table('productes')->insert([
         'image_file' => $image_path

@@ -21,7 +21,6 @@
                 <div class="form-group">
                     <td><label for="company_id">メーカー名*</label></td>
                     <td><select class="company_id" id="company_id" name="company_id">
-                    
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
@@ -55,7 +54,7 @@
                 </tr>
                 <div>
                 
-                <a href="{{ route('list') }}" method="GET">
+                <a href="{{ route('list') }}" method="get"></a>
                     <td><button type="submit" class="btn btn-primary">新規登録</button></td>
                     <td><button type="button" onClick="history.back()">戻る</button></td>
                
