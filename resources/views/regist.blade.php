@@ -53,10 +53,9 @@
                 </div>
                 </tr>
                 <div>
-                
                 <a href="{{ route('list') }}" method="get"></a>
-                    <td><button type="submit" class="btn btn-primary">新規登録</button></td>
-                    <td><button type="button" onClick="history.back()">戻る</button></td>
+                    <td><input type="submit" class="btn btn-primary">新規登録</td>
+                    <td><input type="button" onClick="history.back()">戻る</td>
                
                 </table>
             </form>

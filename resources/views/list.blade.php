@@ -10,7 +10,6 @@
                     @csrf
                     <input placeholder="検索キーワード" input type="text" name="keyword">
                     <select class="company_id" id="company_id" name="company_id"> 
-                    
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
@@ -29,26 +28,26 @@
                         <th>在庫数</th>
                         <th>メーカー名</th>
                         <th> 
-                           <td><a href="{{route('regist')}}"method="post"></a><button type="button" class="btn btn-primary">新規登録</button></td>
+                           <td><a href="{{route('regist')}}"method="get">新規登録</a></td>
                            
                         </th>
                 </thead>
                 <tbody>
                 @foreach ($productes as $productes)
                     <tr>    
-                        <td>{{ $productes -> id }}</td>
+                        <td>{{ $productes -> ID }}</td>
                         <td>{{ $productes -> img_path}}</td>
                         <td>{{ $productes -> product_name }}</td>
                         <td>{{ $productes -> price }}</td>
                         <td>{{ $productes -> stock}}</td>
-                        <td>{{ $productes -> company_name}}</td>
+                        <td>{{ $productes -> company_id}}</td>
                         <td><a href="{{route('detail',['id'=>$productes->id])}}">詳細</a></td>
-                        <td><a href="{{route('delete',['id'=>$productes->id]) }}" method="GET"></a></td>
+                        <td><a href="{{route('delete',['id'=>$productes->id]) }}" method="GET">削除</a></td>
                         <td>
                             <form action="{{route('delete',['id'=>$productes->id])}}" method="GET">
                                 @csrf
                                 @method('delete')
-                                <input type="submit" class="btn btn-danger delete-btn" value="削除">
+        
                             </form>
                         </td>
                         

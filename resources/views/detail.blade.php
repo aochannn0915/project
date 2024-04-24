@@ -7,16 +7,16 @@
     <div class="container">
 
         <div class="row justify-content-center">
-         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+         <link href="{{ asset('css/app.css') }}" href="stylesheet">
             <h1>商品情報詳細画面</h1>
-            <form action="center" method="post"></form>
+            <form action="center" method="post">
                 @csrf
-            
+            </form>
             <table>
                 <tr>
                 <div class="form-group">
                    <td><label for="product_name">ID</label></td>
-                  <td>1.</td>
+                   <td>1.</td>
                 </div>
                 </tr>
                 <tr>
@@ -57,12 +57,12 @@
                 </tr>
                 <tr>
                 <div class="col-sm-offset-2 col-sm-10 text-left">
-                <td><a href="{{route('edit',['id'=> $productes->id])}}" class="button-link">編集</button></a></td>
-                <td><button type="button" onClick="history.back()">戻る</button></td>
+                <td><a href="{{route('edit',['id'=> $productes->id])}}" class="button-link">編集</a></td>
+                <td><a href="{{route('list') }}" class="btn btn-primary">戻る</a></td>
                 </div>
                 </tr>
             </table>   
-            </form>
+            
         </div>
     </div>
 @endsection

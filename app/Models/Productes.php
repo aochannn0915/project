@@ -60,7 +60,7 @@ class Productes extends Model
            $query->where('productes.company_id', '=', $company_id);
         }
        if($keyword){
-        $query->where('name','like','%%')->get();
+        $query->where('productes.product_name','like','%%')->get();
        }
         $productes = $query->get();
         return $productes;
@@ -74,7 +74,7 @@ class Productes extends Model
     
      
     //更新
-    public function updateProductes($request){
+    public function updateProductes($request,$id){
         DB::table('productes')
            ->where('products.id', '=', $id)
            ->update([

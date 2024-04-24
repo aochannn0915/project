@@ -6,7 +6,7 @@
     <div class="container">
         <div class="row">
         <div class="row justify-content-center">
-        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <link href="{{ asset('css/app.css') }}" href="stylesheet">
         
             <h1>商品情報編集画面</h1>
                 <table>
@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                 <div class="form-group">
-                    <td><label for="img_path">在庫数*</label> </td>
+                    <td><label for="img_path">在庫数*</label></td>
                     <td><input type="text" class="form-inline"id="stock" name="stock"></td> 
                 </div>
                 </tr>
@@ -62,12 +62,9 @@
                 </tr>
                 </div>
                 <tr>
-                <form>
-                <form action="{{ route('update')}}" method="post"></a>
-                <td><button type="submit" class="btn btn-success">更新</button></td>
-                <td><button type="button" onClick="history.back()">戻る</button></td>
-                </form>
-                           
+                <td><form action="{{ route('update')}}" method="post">更新</a></td>
+                <td><a href="{{route('detail') }}" class="btn btn-primary">戻る</a></td>
+                </form>       
                 </table>
             
         </div>

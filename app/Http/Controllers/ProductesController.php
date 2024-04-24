@@ -74,7 +74,7 @@ class ProductesController extends Controller
        DB::commit();
        } catch (\Exception $e) {
            DB::rollback();
-           return back();
+           //return back();
        }
        return redirect()->route('list');
      }
@@ -95,15 +95,15 @@ class ProductesController extends Controller
   }
  
    ///更新
-  public function updateProductes(Request $request){
+  public function updateProductes(Request $request,$id){
     DB::beginTransaction();
     try {
     $model = new Productes();
-    $model->updateProductes($request, $id);
+    $model->updateProductes($request,$id);
     DB::commit();
   } catch (\Exception $e) {
       DB::rollback();
-      //return back();
+      return back();
   }
     return redirect()->route('list');
  }
