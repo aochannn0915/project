@@ -8,8 +8,6 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <h1>商品新規登録画面</h1>
             
-            <form action="{{ route('submit') }}" method="post" enctype='multipart/form-data'>
-              @csrf
                <table>
                 <tr>
                 <div class="form-group">
@@ -53,9 +51,11 @@
                 </div>
                 </tr>
                 <div>
-                <a href="{{ route('list') }}" method="get"></a>
-                    <td><input type="submit" class="btn btn-primary">新規登録</td>
-                    <td><input type="button" onClick="history.back()">戻る</td>
+               
+                    <td><input type="button" value="新規登録" 
+                        onclick="location.href='{{route('regist')}}'"></td>
+                    <td><input type="button" value="戻る" 
+                        onclick="location.href='{{route('list')}}'" ></td>
                
                 </table>
             </form>
