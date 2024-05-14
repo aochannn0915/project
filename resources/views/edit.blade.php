@@ -26,7 +26,6 @@
                 <div class="form-group">
                    <td> <label for="stock">メーカー名*</label></td>
                    <td><select class="company_id" id="company_id" name="company_id"> 
-                    
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach

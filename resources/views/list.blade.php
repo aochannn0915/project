@@ -21,37 +21,28 @@
             <table>
                 <thead>
                     <tr>
-                        <th>ID</th>
+                        <th>id</th>
                         <th>商品画像</th>
                         <th>商品名</th>
                         <th>価格</th>
                         <th>在庫数</th>
                         <th>メーカー名</th>
                         <th> 
-                           <td><a href="{{route('regist')}}"method="get">新規登録</a></td>
-                           
+                           <td><a href="{{route('regist)}}" method="post">新規登録</a></td>   
                         </th>
                 </thead>
                 <tbody>
-                @foreach ($productes as $productes)
+                @foreach ($productes as $product)
                     <tr>    
-                        <td>{{ $productes -> ID }}</td>
-                        <td>{{ $productes -> img_path}}</td>
-                        <td>{{ $productes -> product_name }}</td>
-                        <td>{{ $productes -> price }}</td>
-                        <td>{{ $productes -> stock}}</td>
-                        <td>{{ $productes -> company_id}}</td>
-                        <td><a href="{{route('detail',['id'=>$productes->id])}}">詳細</a></td>
-                        <td><a href="{{route('delete',['id'=>$productes->id]) }}" method="GET">削除</a></td>
-                        <td>
-                            <form action="{{route('delete',['id'=>$productes->id])}}" method="GET">
-                                @csrf
-                                @method('delete')
-        
-                            </form>
-                        </td>
-                        
-                        
+                        <td>{{ $product -> id }}</td>
+                        <td>{{ $product -> img_path}}</td>
+                        <td>{{ $product -> product_name }}</td>
+                        <td>{{ $product -> price }}</td>
+                        <td>{{ $product -> stock}}</td>
+                        <td>{{ $product -> company_id}}</td>
+                        <td><input type="button" value="詳細" 
+                        onclick="location.href='{{route('detail',['id' => $product->id])}}'" ></td>
+                        <td><a href="{{route('delete',['id'=>$product->id])}}" method="GET">削除</a></td>   
                     </tr>
                 @endforeach
                 </tbody>

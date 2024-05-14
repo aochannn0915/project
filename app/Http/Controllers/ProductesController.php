@@ -56,32 +56,46 @@ class ProductesController extends Controller
   //新規登録画面regist
    public function Regist(Request $request){
     $productes_model= new Productes();
-    $productes = $productes_model->Regist();
+    $productes = $productes_model->getRegist();
     $company_model= new Companies();
     $companies = $company_model->getAll();
     return view('list', ['productes' => $productes,'companies' => $companies]);
    }
    
-  //新規登録処理
-  public function Registform(){
-    return view('list');
-   }
-     public function registsubmit(Request $request){
-       DB::beginTransaction();
-       try {
-       $model = new Productes();
-       $model->registsubmit($request);
-       DB::commit();
-       } catch (\Exception $e) {
-           DB::rollback();
-           //return back();
-       }
-       return redirect()->route('list');
-     }
+   //新規登録処理create
+  //  public function create(Request $request){        
+  //      return view('regist.create');
+  //  }
+  //  public function submit(Request $request){
+  //   // $regist = $app->layouts->list($request);
+  //   return redirect()->route('list');
+  //    }
+    public function form(){
+    return view('regist');
+    }
+          public function submit(Request $request){
+            DB::beginTransaction();
+            try {
+              $productes_model = new Productes();
+              $productes_model->registProductes($request);
+              DB::commit();
+            } catch (\Exception $e) {
+              DB::rollback();
+              return back();
+            }
+            return redirect()->route('regist');
+          }
+        
   //詳細画面表示detail
   public function showDetail($id){
     $productes_model= new Productes();
     $productes = $productes_model->getDetail($id);
+    return view('detail', ['productes' => $productes]);
+  }
+  //詳細検索detail
+  public function searchdetail(){
+    $productes_model= new Productes();
+    $productes = $productes_model->getDetail();
     return view('detail', ['productes' => $productes]);
   }
   

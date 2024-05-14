@@ -85,25 +85,26 @@ class Productes extends Model
         ]);
      }
       //新規登録画面regist
-    public function Regist() {
+    public function getRegist() {
         $productes = DB::table('productes')->get();
         return $productes;
     }
-    //新規登録画面regist
-    public function RegistForm() {
-        return $productes;
-    }
-    //新規登録処理
-    public function registsubmit($request){
-       DB::table('productes')->insert([
-        'product_name' => $request->input('product_name'),
-        'company_id' => $request->input('company_id'),
-        'price' => $request->input('price'),
-        'stock' => $request->input('stock'),
-        'comment' => $request->input('comment'),
-        'img_path' => $request->input('image'),
-        ]);
+     //新規登録画面regist
+     public function Form() {
+         return $productes;
      }
+     //新規登録処理
+      public function submit($request){
+         DB::table('productes')->insert([
+         'id'=>$request->input('id'),
+         'product_name' => $request->input('product_name'),
+         'company_id' => $request->input('company_id'),
+         'price' => $request->input('price'),
+         'stock' => $request->input('stock'),
+         'comment' => $request->input('comment'),
+         'img_path' => $request->input('image'),
+         ]);
+       }
       //削除
      public function deleteProductes($id){
         DB::table('productes')->where('id', '=', $id)->delete();
