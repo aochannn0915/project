@@ -12,14 +12,14 @@
                 <table>
                 <tr>
                 <div class="form-group">
-                    <td><label for="product_name">ID</label></td>
+                    <td><label for="id" value="{{old('id')}}">id</label></td>
                     <td>1.</td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="price">商品名*</label></td>
-                    <td><input type="text" class="form-inline" id="product_name" name="product_name"></td>
+                    <td><input type="text" class="form-inline" id="product_name" name="product_name" value="{{old('product_name')}}"></td>
                 </div>
                 </tr>
                 <tr>
@@ -36,34 +36,33 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="comment">価格*</label></td>
-                    <td><input type="text" class="form-inline"id="price" name="price"></td>
+                    <td><input type="text" class="form-inline"id="price" name="price" value="{{old('price')}}"></td>
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">在庫数*</label></td>
-                    <td><input type="text" class="form-inline"id="stock" name="stock"></td> 
+                    <td><input type="text" class="form-inline"id="stock" name="stock" value="{{old('stock')}}"></td> 
                 </div>
                 </tr>
                 <tr>
                     <div class="form-group">
                     <td><label for="comment">コメント</label></td>
-                    <td><input type="text" class="form-inline"id="comment" name="comment" ></td>
+                    <td><input type="text" class="form-inline"id="comment" name="comment" value="{{old('comment')}}"></td>
                 </div>
                 </tr>
                 <tr>
                 
                     <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <form action="route('edit')" method="POST" enctype='multipart/form-data'>
-	                <td><input type="file" name="image">
-                </form></td>
+                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
+	                <td><input type="file" name="image"></td>
                 </tr>
                 </div>
                 <tr>
-                <td><form action="{{ route('update')}}" method="post">更新</a></td>
-                <td><a href="{{route('detail') }}" class="btn btn-primary">戻る</a></td>
-                </form>       
+                <td><a href="{{route('update',['id' => $productes->id])}}" class="btn btn-primary">更新</a></td>
+                <td><a href="{{route('detail',['id' => $productes->id])}}" class="btn btn-primary">戻る</a></td>   
+                </tr>    
                 </table>
             
         </div>

@@ -70,9 +70,7 @@ class Productes extends Model
     public function getEdit($id) {
         $productes=Productes::find($id);
         return $productes;
-    }   
-    
-     
+    }        
     //更新
     public function updateProductes($request,$id){
         DB::table('productes')
@@ -89,14 +87,14 @@ class Productes extends Model
         $productes = DB::table('productes')->get();
         return $productes;
     }
-     //新規登録画面regist
-     public function Form() {
-         return $productes;
-     }
+    //  //新規登録画面regist
+    //  public function Form() {
+    //      return $productes;
+    //  }
      //新規登録処理
       public function submit($request){
          DB::table('productes')->insert([
-         'id'=>$request->input('id'),
+        //  'id'=>$request->input('id'),
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_id'),
          'price' => $request->input('price'),

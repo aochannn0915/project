@@ -28,8 +28,9 @@
                         <th>在庫数</th>
                         <th>メーカー名</th>
                         <th> 
-                           <td><a href="{{route('regist')}}" method="post">新規登録</a></td>   
+                           <td><a href="{{route('regist')}}">新規登録</a></td>   
                         </th>
+                    </tr>
                 </thead>
                 <tbody>
                 @foreach ($productes as $productes)
@@ -39,7 +40,7 @@
                         <td>{{ $productes -> product_name }}</td>
                         <td>{{ $productes -> price }}</td>
                         <td>{{ $productes -> stock}}</td>
-                        <td>{{ $productes -> company_id}}</td>
+                        <td>{{ $productes -> company_name}}</td>
                         <td><input type="button" value="詳細" 
                         onclick="location.href='{{route('detail',['id' => $productes->id])}}'" ></td>
                         <td><input type="button" value="削除" 
