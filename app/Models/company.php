@@ -7,10 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 
 
-class companies extends Model
+class company extends Model
 {
     public function getAll(){
-        $companies=Companies::all();
+        $companies=Company::all();
         return $companies;
     }
    //新規登録画面regist
@@ -18,29 +18,29 @@ class companies extends Model
     $companies = DB::table('companies')->get();
     return $productes;
 }
-    public function registProductes($image_path){
-         DB::table('productes')->insert([
+    public function registProducts($image_path){
+         DB::table('products')->insert([
         'image_file' => $image_path
         ]);
     }
 
     
     public function getRegist() {
-        $productes = DB::table('productes')->get();
+        $products = DB::table('products')->get();
 
-        return $productes;
+        return $products;
        
     }
     public function getDetail() {
-        $productes = DB::table('productes')->get();
+        $products = DB::table('products')->get();
 
-        return $productes;
+        return $products;
        
     }
-    public function getEdit() {
-        $productes = DB::table('productes')->get();
+    public function getEdit($id) {
+        $products = DB::table('products')->get($id);
 
-        return $productes;
+        return $products;
        
     }
 }

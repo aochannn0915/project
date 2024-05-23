@@ -1,71 +1,62 @@
 @extends('app')
 
-@section('title')
+@section('title','商品編集画面')
 
 @section('content')
     <div class="container">
-        <div class="row">
         <div class="row justify-content-center">
-        <link href="{{ asset('css/app.css') }}" href="stylesheet">
+        <link href="{{ asset('css/app.css') }}" ref="stylesheet">
         
             <h1>商品情報編集画面</h1>
-                <table>
-                <tr>
-                <div class="form-group">
-                    <td><label for="id" value="{{old('id')}}">id</label></td>
-                    <td>1.</td>
-                </div>
-                </tr>
-                <tr>
-                <div class="form-group">
+            <form action="{{ route('update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                @method('PUT')
+            <table>
+              <tr>
+                
+                    <td><label for="id">id</label></td>
+                    <td>{{ $product->id }}</td> 
+              </tr>
+              <tr>
+            
                     <td><label for="price">商品名*</label></td>
                     <td><input type="text" class="form-inline" id="product_name" name="product_name" value="{{old('product_name')}}"></td>
-                </div>
-                </tr>
-                <tr>
-                <div class="form-group">
-                   <td> <label for="stock">メーカー名*</label></td>
-                   <td><select class="company_id" id="company_id" name="company_id"> 
+              </tr>
+              <tr>
+                    <td> <label for="company_id">メーカー名*</label></td>
+                    <td>
+                    <select class="company_id" id="company_id" name="company_id"> 
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select>
-                   </td>
-                </div>
-                </tr>
-                <tr>
-                <div class="form-group">
-                    <td><label for="comment">価格*</label></td>
+                    </td>
+              </tr>
+              <tr>
+                    <td><label for="price">価格*</label></td>
                     <td><input type="text" class="form-inline"id="price" name="price" value="{{old('price')}}"></td>
-                </div>
-                </tr>
-                <tr>
-                <div class="form-group">
-                    <td><label for="img_path">在庫数*</label></td>
+              </tr>
+              <tr>
+                    <td><label for="stock">在庫数*</label></td>
                     <td><input type="text" class="form-inline"id="stock" name="stock" value="{{old('stock')}}"></td> 
-                </div>
-                </tr>
-                <tr>
-                    <div class="form-group">
+              </tr>
+              <tr>
                     <td><label for="comment">コメント</label></td>
                     <td><input type="text" class="form-inline"id="comment" name="comment" value="{{old('comment')}}"></td>
-                </div>
-                </tr>
-                <tr>
+              </tr>
+              <tr>
                 
-                    <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
                     <a href="route('edit')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
 	                <td><input type="file" name="image"></td>
-                </tr>
-                </div>
-                <tr>
-                <td><a href="{{route('update',['id' => $productes->id])}}" class="btn btn-primary">更新</a></td>
-                <td><a href="{{route('detail',['id' => $productes->id])}}" class="btn btn-primary">戻る</a></td>   
-                </tr>    
-                </table>
+              </tr>
+              <tr>
+                <button type="submit" class="btn btn-primary">更新</button>
+                <td><a href="{{route('detail',['id' => $product->id])}}" class="btn btn-primary">戻る</a></td>   
+              </tr>    
+            </table>
             
-        </div>
+        </form>
     </div>
 @endsection
 
