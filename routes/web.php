@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductesController;
+use App\Http\Controllers\ProductController;
 
 
 /*
@@ -18,14 +18,14 @@ use App\Http\Controllers\ProductesController;
 Route::get('/', function () {
    return view('app');
 });
-Route::get('/list', [App\Http\Controllers\ProductController::class, 'showList'])->name('list');//商品一覧画面
+Route::get('/list', [App\Http\Controllers\ProductController::class, 'getList'])->name('list');//商品一覧画面
 Route::get('/regist', [App\Http\Controllers\ProductController::class, 'regist'])->name('regist');//新規登録
 Route::post('/submit', [App\Http\Controllers\ProductController::class, 'submit'])->name('submit');//新規登録処理
-Route::get('/detail/{id}', [App\Http\Controllers\ProductController::class, 'showDetail'])->name('detail');
-Route::get('/edit/{id}',[App\Http\Controllers\ProductController::class, 'showEdit'])->name('edit');
+Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');//検索
+Route::get('/detail/{id}', [App\Http\Controllers\ProductController::class, 'getDetail'])->name('detail');
+Route::get('/edit/{id}',[App\Http\Controllers\ProductController::class, 'getEdit'])->name('edit');
 Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('update');//更新//
 Route::get('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('delete');//削除
-Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');//検索
 Route::get('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('login1');//login
 Route::post('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('login');//login処理
 Route::get('/register',[App\Http\Controllers\ProductController::class, 'register'])->name('registers');

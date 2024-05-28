@@ -10,37 +10,31 @@ use Illuminate\Support\Facades\DB;
 class company extends Model
 {
     public function getAll(){
-        $companies=Company::all();
-        return $companies;
+        $company=Company::all();
+        return $company;
     }
    //新規登録画面regist
-   public function Regist() {
-    $companies = DB::table('companies')->get();
-    return $productes;
+   public function getRegist() {
+    $company = DB::table('company')->get();
+    return $product;
 }
-    public function registProducts($image_path){
-         DB::table('products')->insert([
+    public function regist($image_path){
+         DB::table('product')->insert([
         'image_file' => $image_path
         ]);
-    }
+    }   
+    // public function getRegist() {
+    //     $products = DB::table('products')->get();
 
-    
-    public function getRegist() {
-        $products = DB::table('products')->get();
-
-        return $products;
+    //     return $products;
        
-    }
+    // }
     public function getDetail() {
-        $products = DB::table('products')->get();
-
-        return $products;
-       
+        $product = DB::table('product')->get();
+        return $product;
     }
     public function getEdit($id) {
-        $products = DB::table('products')->get($id);
-
-        return $products;
-       
+        $product = DB::table('product')->get($id);
+        return $product;
     }
 }

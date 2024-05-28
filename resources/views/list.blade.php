@@ -10,13 +10,12 @@
                 <form action="{{ route('search') }}" method="GET">
                     <input placeholder="検索キーワード" type="text" name="keyword">
                     <select class="company_id" id="company_id" name="company_id"> 
-                        @foreach($company as $company)
+                        @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select>
                     <input type="submit" value="検索">  
                 </form>
-                <link href="{{ asset('css/app.css') }}" rel="stylesheet">
              </div>
             <table>
                 <thead>
@@ -31,7 +30,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                @foreach ($product as $product)
+                @foreach ($products as $product)
                     <tr>    
                         <td>{{ $product -> id }}</td>
                         <td>{{ $product -> img_path}}</td>

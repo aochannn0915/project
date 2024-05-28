@@ -10,71 +10,71 @@ class Product extends Model
 
 {
     //login
-    public function login(){
-        $product= Product::all();
-        return $product;
+    public function getlogin(){
+        $products= Product::all();
+        return $products;
     }
     //register
-    public function register() {
-        $product= Product::all();
-        return $product;
+    public function getregister() {
+        $products= Product::all();
+        return $products;
     }
     //リレーション
     public function showRelation(){
-        $product = DB::table('product')
-        ->join('company', 'product.company_id', '=', 'company.id')
-        ->select('product.*','company.company_name')
+        $products = DB::table('products')
+        ->join('companies', 'products.company_id', '=', 'companies.id')
+        ->select('products*','companies.company_name')
         ->get();
-        return $product;
+        return $products;
     }
     //一覧画面
     public function getList() {
-        $product = Product::all();
-        return $product;
+        $products = Product::all();
+        return $products;
     }
     ///検索
-    public function searchProduct($keyword,$company_id){
-        $query= DB::table('product')
-        ->join('company', 'product.company_id', '=', 'company.id')
-        ->select('product.*','company.company_name');
+    public function getsearch($keyword,$company_id){
+        $query= DB::table('products')
+        ->join('companies', 'products.company_id', '=', 'companies.id')
+        ->select('products.*','companies.company_name');
         if($company_id){
-           $query->where('product.company_id', '=', $company_id)->get();
+           $query->where('products.company_id', '=', $company_id)->get();
         }
        if($keyword){
-        $product=$query->where('company_id','like','%%')->get();
+        $products=$query->where('company_id','like','%%')->get();
        }
-        $product = $query->get();
-        return $product;
+        $products = $query->get();
+        return $products;
     }
     //詳細
     public function getDetail($id) {
-        $product=Product::find($id);
-        return $product;
+        $products=Product::find($id);
+        return $products;
     }
     ///詳細 検索
-    public function searchDetail($img_path,$product_name,$company_name, $price,$comment){
-        $query= DB::table('product')
-        ->join('company', 'product.company_id', '=', 'company.id')
-        ->select('product.*','company.company_name');
+    public function getsearchDetail($img_path,$product_name,$company_name, $price,$comment){
+        $query= DB::table('products')
+        ->join('companies', 'products.company_id', '=', 'companies.id')
+        ->select('products.*','companies.company_name');
         if($img_path){
-           $query->where('product.company_id', '=', $company_id);
+           $query->where('products.company_id', '=', $company_id);
         }
        if($keyword){
-        $query->where('product.product_name','like','%%')->get();
+        $query->where('products.product_name','like','%%')->get();
        }
-        $product = $query->get();
-        return $product;
+        $products = $query->get();
+        return $products;
     }
     
     //編集
     public function getEdit($id) {
-        $product=Product::find($id);
-        return $product;
+        $products=Product::find($id);
+        return $products;
     }        
     //更新
-    public function updateProduct($request,$id){
-        DB::table('product')
-           ->where('product.id', '=', $id)
+    public function getupdate($request,$id){
+        DB::table('products')
+           ->where('products.id', '=', $id)
            ->update([
            'product_name' => $request->input('product_name'),
            'company_name' => $request->input('company_name'),
@@ -84,8 +84,8 @@ class Product extends Model
      }
       //新規登録画面regist
     public function getRegist() {
-        $product = DB::table('product')->get();
-        return $product;
+        $products = DB::table('products')->get();
+        return $products;
     }
     //  //新規登録画面regist
     //  public function Form() {
@@ -93,7 +93,7 @@ class Product extends Model
     //  }
      //新規登録処理
       public function submit($request){
-         DB::table('product')->insert([
+         DB::table('products')->insert([
         //  'id'=>$request->input('id'),
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_id'),
@@ -104,16 +104,16 @@ class Product extends Model
          ]);
        }
       //削除
-     public function deleteProduct($id){
-        DB::table('product')->where('id', '=', $id)->delete();
+     public function getdelete($id){
+        DB::table('products')->where('id', '=', $id)->delete();
      }
      
        ///画像
-    public function registProduct($img_path){
-        DB::table('product')->insert([
-            'image_file' => $img_path
-        ]);
-}
+//     public function getRegist($img_path){
+//         DB::table('products')->insert([
+//             'image_file' => $img_path
+//         ]);
+// }
 }
 
     
