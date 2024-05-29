@@ -9,6 +9,8 @@
         <h1>商品新規登録画面</h1>
             
                <table>
+               <form action="{{route('regist')}}" method="POST" enctype='multipart/form-data'>
+                @csrf
                 <tr>
                 <div class="form-group">
                     <td><label for="product_name">商品名*</label></td>
@@ -20,7 +22,7 @@
                     <td><label for="company_name">メーカー名*</label></td>
                     <td><select class="company_name" id="company_name" name="company_name">
                         @foreach($companies as $company)
-                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
+                        <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
                         @endforeach
                     </select> </td>
                 </div>
@@ -46,13 +48,10 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <form action="route('regist')" method="GET" enctype='multipart/form-data'>
 	                <td><input type="file" name="image" value="{{old('img_path')}}"></td>
-                    </form>
                 </div>
                 </tr>
                 <div>
-                   <form action="{{route('regist')}}" method="GET">
                     <td><input type="submit" value="新規登録" ></td>
                     <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>

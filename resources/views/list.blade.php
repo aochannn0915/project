@@ -11,7 +11,7 @@
                     <input placeholder="検索キーワード" type="text" name="keyword">
                     <select class="company_id" id="company_id" name="company_id"> 
                         @foreach($companies as $company)
-                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
+                        <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
                         @endforeach
                     </select>
                     <input type="submit" value="検索">  
@@ -32,17 +32,17 @@
                 <tbody>
                 @foreach ($products as $product)
                     <tr>    
-                        <td>{{ $product -> id }}</td>
-                        <td>{{ $product -> img_path}}</td>
-                        <td>{{ $product -> product_name }}</td>
-                        <td>{{ $product -> price }}</td>
-                        <td>{{ $product -> stock}}</td>
-                        <td>{{ $product -> company_name}}</td>
+                        <td>{{ $products -> id }}</td>
+                        <td>{{ $products -> img_path}}</td>
+                        <td>{{ $products -> product_name }}</td>
+                        <td>{{ $products -> price }}</td>
+                        <td>{{ $products -> stock}}</td>
+                        <td>{{ $products -> company_name}}</td>
                         <td>
                             <input type="button" value="詳細" 
-                        onclick="location.href='{{route('detail',['id' => $product->id])}}'" >
+                        onclick="location.href='{{route('detail',['id' => $products->id])}}'" >
                             <input type="button" value="削除" 
-                        onclick="location.href='{{route('delete',['id' => $product->id])}}'" >
+                        onclick="location.href='{{route('delete',['id' => $products->id])}}'" >
                         </td>   
                     </tr>
                 @endforeach

@@ -8,14 +8,14 @@
         <link href="{{ asset('css/app.css') }}" ref="stylesheet">
         
             <h1>商品情報編集画面</h1>
-            <form action="{{ route('update', ['id' => $product->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update', ['id' => $products->id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             <table>
               <tr>
                 
                     <td><label for="id">id</label></td>
-                    <td>{{ $product->id }}</td> 
+                    <td>{{ $products->id }}</td> 
               </tr>
               <tr>
             
@@ -27,7 +27,7 @@
                     <td>
                     <select class="company_name" id="company_name" name="company_name"> 
                         @foreach($companies as $company)
-                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
+                        <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
                         @endforeach
                     </select>
                     </td>
@@ -52,7 +52,7 @@
               </tr>
               <tr>
                 <!-- <form action="{{route('update')}}" method="POST">更新 -->
-                <td><a href="{{route('detail',['id' => $product->id])}}" class="btn btn-primary">戻る</a></td>   
+                <td><a href="{{route('detail',['id' => $products->id])}}" class="btn btn-primary">戻る</a></td>   
               </tr>    
                 </form>
             </table>

@@ -75,7 +75,7 @@ class ProductController extends Controller
       $model = new Product();
     DB::beginTransaction();
       try {
-          $image = $request->file('img');
+          $image = $request->file('image');
         if($image){
           $file_name = $image->getClientOriginalName();
           $image->storeAs('public/images', $file_name);
@@ -83,7 +83,7 @@ class ProductController extends Controller
         }else{
           $img_path=null;
         } 
-          $model->regist($request,$img_path);
+          $model->submit($request,$img_path);
           DB::commit();
         } catch (\Exception $e) {
           DB::rollback();
@@ -98,12 +98,12 @@ class ProductController extends Controller
       $products= $product_model->getDetail($id);
       return view('detail', ['products' => $products]);
   }
-  //詳細検索detail
-  public function searchdetail(){
-      $product_model= new Product();
-      $products= $product_model->getDetail();
-      return view('detail', ['products' => $products]);
-  }
+  // //詳細検索detail
+  // public function searchdetail(){
+  //     $product_model= new Product();
+  //     $products= $product_model->getDetail();
+  //     return view('detail', ['products' => $products]);
+  // }
   
    //商品編集
   public function Edit(Request $request,$id){

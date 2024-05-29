@@ -50,7 +50,10 @@ class Product extends Model
     }
     //詳細
     public function getDetail($id) {
-        $products=Product::all();
+        $products = DB::table('products')
+        ->join('companies', 'products.company_id', '=', 'companies.id')
+        ->where('products.id', '=', $id)
+        ->first();
         return $products;
     }
     ///詳細 検索
@@ -93,9 +96,8 @@ class Product extends Model
      //新規登録処理
       public function submit($request,$img_path){
          DB::table('products')->insert([
-         'id'=>$request->input('id'),
          'product_name' => $request->input('product_name'),
-         'company_id' => $request->input('company_id'),
+         'company_id' => $request->input('company_name'),
          'price' => $request->input('price'),
          'stock' => $request->input('stock'),
          'comment' => $request->input('comment'),
