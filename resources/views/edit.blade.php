@@ -19,13 +19,13 @@
               </tr>
               <tr>
             
-                    <td><label for="price">商品名*</label></td>
+                    <td><label for="product_name">商品名*</label></td>
                     <td><input type="text" class="form-inline" id="product_name" name="product_name" value="{{old('product_name')}}"></td>
               </tr>
               <tr>
-                    <td> <label for="company_id">メーカー名*</label></td>
+                    <td> <label for="company_name">メーカー名*</label></td>
                     <td>
-                    <select class="company_id" id="company_id" name="company_id"> 
+                    <select class="company_name" id="company_name" name="company_name"> 
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
@@ -51,9 +51,10 @@
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>
-                <button type="submit" class="btn btn-primary">更新</button>
+                <!-- <form action="{{route('update')}}" method="POST">更新 -->
                 <td><a href="{{route('detail',['id' => $product->id])}}" class="btn btn-primary">戻る</a></td>   
               </tr>    
+                </form>
             </table>
             
         </form>

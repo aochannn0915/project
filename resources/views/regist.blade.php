@@ -17,9 +17,9 @@
                 </tr>
                 <tr>
                 <div class="form-group">
-                    <td><label for="company_id">メーカー名*</label></td>
-                    <td><select class="company_id" id="company_id" name="company_id">
-                        @foreach($company as $company)
+                    <td><label for="company_name">メーカー名*</label></td>
+                    <td><select class="company_name" id="company_name" name="company_name">
+                        @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select> </td>
@@ -46,17 +46,17 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <form action="route('regist')" method="GET" enctype='multipart/form-data'></form>
+                    <form action="route('regist')" method="GET" enctype='multipart/form-data'>
 	                <td><input type="file" name="image" value="{{old('img_path')}}"></td>
+                    </form>
                 </div>
                 </tr>
                 <div>
-               
-                    <td><input type="submit" value="新規登録" 
-                        onclick="location.href='{{route('regist')}}'"></td>
+                   <form action="{{route('regist')}}" method="GET">
+                    <td><input type="submit" value="新規登録" ></td>
                     <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
-               
+                   </form>
                 </table>
             
         </div>

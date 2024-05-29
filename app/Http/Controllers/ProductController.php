@@ -47,12 +47,6 @@ class ProductController extends Controller
       $companies = $company_model->getAll();
       return view('list',['products' => $products,'companies' => $companies]);
   }
-  //更新
-  // public function update(Request $request,$id){
-  //     $products = new Product($id);
-  //     $products->update($request, $id);
-  //     return redirect()->route('list');
-  // }     
   ///更新
   public function update(Request $request,$id){
     DB::beginTransaction();
@@ -81,7 +75,7 @@ class ProductController extends Controller
       $model = new Product();
     DB::beginTransaction();
       try {
-          $image = $request->file('img_path');
+          $image = $request->file('img');
         if($image){
           $file_name = $image->getClientOriginalName();
           $image->storeAs('public/images', $file_name);
@@ -89,9 +83,7 @@ class ProductController extends Controller
         }else{
           $img_path=null;
         } 
-          $product_model = new Product();
-          $product_model->getregist($request);
-          $model->regist($img_path);
+          $model->regist($request,$img_path);
           DB::commit();
         } catch (\Exception $e) {
           DB::rollback();
@@ -115,27 +107,26 @@ class ProductController extends Controller
   
    //商品編集
   public function Edit(Request $request,$id){
-    // DB::beginTransaction();
-    // try {
-    //     $image = $request->file('img_path');
-    //   if($image){
-    //     $file_name = $image->getClientOriginalName();
-    //     $image->storeAs('public/images', $file_name);
-    //     $img_path = 'storage/images/' . $file_name;
-    //   }else{
-    //     $img_path=null;
-    //   } 
       $product_model= new Product();
+       DB::beginTransaction();
+        try {
+           $image = $request->file('img');
+         if($image){
+           $file_name = $image->getClientOriginalName();
+           $image->storeAs('public/images', $file_name);
+           $img_path = 'storage/images/' . $file_name;
+         }else{
+           $img_path=null;
+         } 
+
       $products = $product_model->getEdit($request,$id);
-    //   $model->editProductes($img_path);
-      $company_model= new Company();
-      $companies= $company_model->getAll($id);
-    //   DB::commit();
-    // } catch (\Exception $e) {
-    //     DB::rollback();
-    //     return back();
-    // }
-      return view('edit', ['products' => $products,'companies' => $companies]);
+      $model->edit($request,$img_path);
+       DB::commit();
+     } catch (\Exception $e) {
+         DB::rollback();
+         return back();
+     }
+     return redirect()->route('list');
    }
   //削除
   public function delete($id){
@@ -151,19 +142,5 @@ class ProductController extends Controller
       return redirect()->route('list');
       
   }  
-    // public function Image(Request $request) {
-    //   $image = $request->file('image');
-    //   $file_name = $image->getClientOriginalName();
-    //   $image->storeAs('public/images', $file_name);
-    //   $image_path = 'storage/images/' . $file_name;
-    //   $model = new Productes();
-    //         DB::beginTrasnsaction();
-    //   try{
-    //     $model->registProductes($image_path);
-    //     DB::commit();
-    //   }catch(Exception $e){
-    //     DB::rollBack();
-    //   }
-    // }
 }
    

@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 
 {
+    protected $table = "products";
+
     //login
     public function getlogin(){
         $products= Product::all();
@@ -23,7 +25,7 @@ class Product extends Model
     public function showRelation(){
         $products = DB::table('products')
         ->join('companies', 'products.company_id', '=', 'companies.id')
-        ->select('products*','companies.company_name')
+        ->select('products.*','companies.company_name')
         ->get();
         return $products;
     }
@@ -48,23 +50,23 @@ class Product extends Model
     }
     //詳細
     public function getDetail($id) {
-        $products=Product::find($id);
+        $products=Product::all();
         return $products;
     }
     ///詳細 検索
-    public function getsearchDetail($img_path,$product_name,$company_name, $price,$comment){
-        $query= DB::table('products')
-        ->join('companies', 'products.company_id', '=', 'companies.id')
-        ->select('products.*','companies.company_name');
-        if($img_path){
-           $query->where('products.company_id', '=', $company_id);
-        }
-       if($keyword){
-        $query->where('products.product_name','like','%%')->get();
-       }
-        $products = $query->get();
-        return $products;
-    }
+    // public function getsearchDetail($img_path,$product_name,$company_name, $price,$comment){
+    //     $query= DB::table('products')
+    //     ->join('companies', 'products.company_id', '=', 'companies.id')
+    //     ->select('products.*','companies.company_name');
+    //     if($img_path){
+    //        $query->where('products.company_id', '=', $company_id);
+    //     }
+    //    if($keyword){
+    //     $query->where('products.product_name','like','%%')->get();
+    //    }
+    //     $products = $query->get();
+    //     return $products;
+    // }
     
     //編集
     public function getEdit($id) {
@@ -79,7 +81,8 @@ class Product extends Model
            'product_name' => $request->input('product_name'),
            'company_name' => $request->input('company_name'),
            'price'        => $request->input('price'),
-           'stock'        => $request->input('stock')
+           'stock'        => $request->input('stock'),
+           'img_path' => $img_path
         ]);
      }
       //新規登録画面regist
@@ -87,33 +90,22 @@ class Product extends Model
         $products = DB::table('products')->get();
         return $products;
     }
-    //  //新規登録画面regist
-    //  public function Form() {
-    //      return $productes;
-    //  }
      //新規登録処理
-      public function submit($request){
+      public function submit($request,$img_path){
          DB::table('products')->insert([
-        //  'id'=>$request->input('id'),
+         'id'=>$request->input('id'),
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_id'),
          'price' => $request->input('price'),
          'stock' => $request->input('stock'),
          'comment' => $request->input('comment'),
-         'img_path' => $request->input('img_path'),
+         'img_path' => $img_path
          ]);
        }
       //削除
      public function getdelete($id){
         DB::table('products')->where('id', '=', $id)->delete();
      }
-     
-       ///画像
-//     public function getRegist($img_path){
-//         DB::table('products')->insert([
-//             'image_file' => $img_path
-//         ]);
-// }
 }
 
     

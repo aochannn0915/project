@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\DB;
 
 class company extends Model
 {
+    protected $table = "companies";
+
     public function getAll(){
         $company=Company::all();
         return $company;
