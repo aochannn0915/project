@@ -11,17 +11,17 @@ class company extends Model
 {
     protected $table = "companies";
 
-    public function getAll(){
-        $company=Company::all();
-        return $company;
+     public function getAll(){
+     $companies=Company::all();
+     return $companies;
     }
    //新規登録画面regist
    public function getRegist() {
-    $company = DB::table('company')->get();
-    return $product;
-}
+    $companies = DB::table('companies')->get();
+    return $companies;
+    }
     public function regist($image_path){
-         DB::table('product')->insert([
+         DB::table('products')->insert([
         'image_file' => $image_path
         ]);
     }   
@@ -32,11 +32,11 @@ class company extends Model
        
     // }
     public function getDetail() {
-        $product = DB::table('product')->get();
-        return $product;
+        $products = DB::table('products')->get();
+        return $products;
     }
     public function getEdit($id) {
-        $product = DB::table('product')->get($id);
-        return $product;
+        $products = DB::table('products')->get($id);
+        return $products;
     }
 }

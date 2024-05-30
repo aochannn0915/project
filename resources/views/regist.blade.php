@@ -9,7 +9,7 @@
         <h1>商品新規登録画面</h1>
             
                <table>
-               <form action="{{route('regist')}}" method="POST" enctype='multipart/form-data'>
+               <form action="{{route('submit')}}" method="POST" enctype='multipart/form-data'>
                 @csrf
                 <tr>
                 <div class="form-group">
@@ -22,7 +22,7 @@
                     <td><label for="company_name">メーカー名*</label></td>
                     <td><select class="company_name" id="company_name" name="company_name">
                         @foreach($companies as $company)
-                        <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
+                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select> </td>
                 </div>

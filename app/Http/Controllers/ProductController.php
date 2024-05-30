@@ -65,7 +65,7 @@ class ProductController extends Controller
       $product_model= new Product();
       $products = $product_model->getRegist();
       $company_model= new Company();
-      $companies = $company_model->getAll();
+      $companies = $company_model->getRegist();
       return view('regist', ['products' => $products,'companies' => $companies]);
   }
    
