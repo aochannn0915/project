@@ -20,12 +20,12 @@
               <tr>
             
                     <td><label for="product_name">商品名*</label></td>
-                    <td><input type="text" class="form-inline" id="product_name" name="product_name" value="{{old('product_name')}}"></td>
+                    <td><input type="text" class="form-inline"  name="product_name" value="{{old('product_name')}}"></td>
               </tr>
               <tr>
                     <td> <label for="company_name">メーカー名*</label></td>
                     <td>
-                    <select class="company_name" id="company_name" name="company_name"> 
+                    <select class="company_name" name="company_name"> 
                         @foreach($companies as $company)
                         <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
                         @endforeach
@@ -34,15 +34,15 @@
               </tr>
               <tr>
                     <td><label for="price">価格*</label></td>
-                    <td><input type="text" class="form-inline"id="price" name="price" value="{{old('price')}}"></td>
+                    <td><input type="text" class="form-inline" name="price" value="{{old('price')}}"></td>
               </tr>
               <tr>
                     <td><label for="stock">在庫数*</label></td>
-                    <td><input type="text" class="form-inline"id="stock" name="stock" value="{{old('stock')}}"></td> 
+                    <td><input type="text" class="form-inline" name="stock" value="{{old('stock')}}"></td> 
               </tr>
               <tr>
                     <td><label for="comment">コメント</label></td>
-                    <td><input type="text" class="form-inline"id="comment" name="comment" value="{{old('comment')}}"></td>
+                    <td><input type="text" class="form-inline"name="comment" value="{{old('comment')}}"></td>
               </tr>
               <tr>
                 
@@ -52,7 +52,7 @@
               </tr>
               <tr>
                 <!-- <form action="{{route('update')}}" method="POST">更新 -->
-                <td><a href="{{route('detail',['id' => $products->id])}}" class="btn btn-primary">戻る</a></td>   
+                <td><a href="{{route('detail',['id' => $product->id])}}" class="btn btn-primary">戻る</a></td>   
               </tr>    
                 </form>
             </table>

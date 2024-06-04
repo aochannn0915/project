@@ -14,7 +14,7 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="product_name">商品名*</label></td>
-                    <td><input type="text" class="form-inline"id="product_name" name="product_name" value="{{old('product_name')}}"></td>
+                    <td><input type="text" class="form-inline" name="product_name" value="{{old('product_name')}}"></td>
                 </div>
                 </tr>
                 <tr>
@@ -30,13 +30,13 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="price">価格*</label></td>
-                    <td><lavel><input type="text" class="form-inline"id="price" name="price" value="{{old('price')}}"></laravel></td> 
+                    <td><lavel><input type="text" class="form-inline" name="price" value="{{old('price')}}"></laravel></td> 
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="stock">在庫数*</label></td>
-                    <td><input type="text" class="form-inline"id="stock" name="stock" value="{{old('stock')}}"></td>
+                    <td><input type="text" class="form-inline" name="stock" value="{{old('stock')}}"></td>
                 </div>
                 </tr>
                 <tr>

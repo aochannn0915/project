@@ -16,7 +16,7 @@
                     </select>
                     <input type="submit" value="検索">  
                 </form>
-             </div>
+                </div>
             <table>
                 <thead>
                     <tr>

@@ -9,7 +9,15 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 
 {
-    protected $table = "products";
+    protected $fillable = [
+        'id',
+        'company_id',
+        'product_name',
+        'price',
+        'stock',
+        'comment',
+        'img_path',
+    ];
 
     //login
     public function getlogin(){
@@ -27,10 +35,10 @@ class Product extends Model
         ->join('companies', 'products.company_id', '=', 'companies.id')
         ->select('products.*','companies.company_name')
         ->get();
-        return $products;
+        return  $products;
     }
     //一覧画面
-    public function getList() {
+    public function getlist() {
         $products = Product::all();
         return $products;
     }
@@ -49,7 +57,7 @@ class Product extends Model
         return $products;
     }
     //詳細
-    public function getDetail($id) {
+    public function getdetail($id) {
         $products = DB::table('products')
         ->join('companies', 'products.company_id', '=', 'companies.id')
         ->where('products.id', '=', $id)
@@ -72,7 +80,7 @@ class Product extends Model
     // }
     
     //編集
-    public function getEdit($id) {
+    public function getedit($id) {
         $products=Product::find($id);
         return $products;
     }        
@@ -85,11 +93,11 @@ class Product extends Model
            'company_name' => $request->input('company_name'),
            'price'        => $request->input('price'),
            'stock'        => $request->input('stock'),
-           'img_path' => $img_path
+           'img_path'     => $img_path
         ]);
      }
       //新規登録画面regist
-    public function getRegist() {
+    public function getregist() {
         $products = DB::table('products')->get();
         return $products;
     }
@@ -97,7 +105,7 @@ class Product extends Model
       public function submit($request,$img_path){
          DB::table('products')->insert([
          'product_name' => $request->input('product_name'),
-         'company_name' => $request->input('company_name'),
+         'company_id' => $request->input('company_id'),
          'price' => $request->input('price'),
          'stock' => $request->input('stock'),
          'comment' => $request->input('comment'),

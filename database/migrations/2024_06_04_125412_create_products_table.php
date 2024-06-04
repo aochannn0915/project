@@ -14,16 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->biginteger('id');
-            $table->bigint('company_id');
-            $table->varcher('product_name');
-            $table->varchar('price');
-            $table->varcahr('stock');
+            $table->id();
+            $table->integer('company_id');
+            $table->string('product_name');
+            $table->integer('price');
+            $table->integer('stock');
             $table->text('comment');
-            $table->varchar('img_path');
-            $table->timestamp('created_at');
-            $table->timestamp('updated_at');
-            $table->timestamps();	
+            $table->string('img_path');
+            $table->timestamps();
         });
     }
 

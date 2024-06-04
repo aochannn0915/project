@@ -56,7 +56,8 @@
                 </tr>
                 <tr>
                     <div class="col-sm-offset-2 col-sm-10 text-left">
-                         <td><input type="submit" value="編集" ></td>
+                         <td><input type="submit" value="編集" 
+                         onclick="location.href='{{route('edit',['id' => $products->id])}}'"></td>
                          <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
                       
