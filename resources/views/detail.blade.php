@@ -10,8 +10,8 @@
          <link href="{{ asset('css/app.css') }}" href="stylesheet">
             <h1>商品情報詳細画面</h1>
             <table>
-            <form action="{{route('edit',['id'=> $products->id])}}" method="GET">
-                @csrf
+           <form action="{{route('edit',['id'=> $products->id])}}" method="GET" enctype='multipart/form-data'>
+                @csrf 
                 <tr>
                 <div class="form-group">
                    <td><label for="product_id">ID</label></td>
@@ -56,15 +56,15 @@
                 </tr>
                 <tr>
                     <div class="col-sm-offset-2 col-sm-10 text-left">
-                         <td><input type="submit" value="編集" 
-                         onclick="location.href='{{route('edit',['id' => $products->id])}}'"></td>
+                         <!-- <td><input type="button" value="編集" 
+                         onclick="location.href='{{route('edit',['id' => $products->id])}}'"></td> -->
                          <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
                       
                     </div>
                         
                 </tr>
-             </form>
+          
             </table>   
             
         </div>

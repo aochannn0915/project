@@ -20,11 +20,11 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="company_name">メーカー名*</label></td>
-                    <td><select class="company_name" id="company_name" name="company_name">
+                    <td><select class="company_name"  name="company_name">
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
-                    </select> </td>
+                       </select> </td>
                 </div>
                 </tr>
                 <tr>
@@ -52,7 +52,7 @@
                 </div>
                 </tr>
                 <div>
-                    <td><input type="submit" value="新規登録" ></td>
+                    <td><input type="submit" value="新規登録"></td>
                     <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
                    </form>

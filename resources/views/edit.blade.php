@@ -15,7 +15,7 @@
               <tr>
                 
                     <td><label for="id">id</label></td>
-                    <td>{{ $products->id }}</td> 
+                    <td>{{ $product->id }}</td> 
               </tr>
               <tr>
             

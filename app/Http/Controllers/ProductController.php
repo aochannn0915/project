@@ -98,11 +98,9 @@ public function edit(Request $request,$id){
 }
   //新規登録画面regist
   public function regist(Request $request){
-      $product_model= new Product();
-      $products = $product_model->getregist();
       $company_model= new Company();
       $companies = $company_model->getregist();
-      return view('list', ['products' => $products,'companies' => $companies]);
+      return view('regist', ['companies' => $companies]);
   }
    
     // 登録処理 
@@ -124,6 +122,7 @@ public function edit(Request $request,$id){
         } catch (\Exception $e) {
           DB::rollback();
           return back();
+          $products->save();
         }
           return redirect()->route('list');
   }
