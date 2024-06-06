@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\DB;
 class Product extends Model
 
 {
-    protected $fillable = [
+    protected $table = [
         'id',
         'company_id',
         'product_name',
@@ -80,10 +80,21 @@ class Product extends Model
     // }
     
     //編集
-    public function getedit($id) {
-        $products=Product::find($id);
+    public function getedit() {
+        $products=DB::table('products')->get();
         return $products;
-    }        
+    }      
+    //画像編集処理
+    public function index($request,$img_path){
+        DB::table('products')->insert([
+        'product_name' => $request->input('product_name'),
+        'company_id' => $request->input('company_name'),
+        'price' => $request->input('price'),
+        'stock' => $request->input('stock'),
+        'comment' => $request->input('comment'),
+        'img_path' => $img_path
+        ]);
+      }  
     //更新
     public function getupdate($request,$id){
         DB::table('products')

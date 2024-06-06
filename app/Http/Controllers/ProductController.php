@@ -38,7 +38,7 @@ class ProductController extends Controller
       return view('list',['products' => $products,'companies' => $companies]);
   }
   //検索機能
-  public function search(Request $request){
+  public function search(Request $id){
       $company_id = $request->input('company_id');
       $keyword=$request->input('keyword');
       $model = new Product();
@@ -59,12 +59,19 @@ class ProductController extends Controller
 //     $products= $product_model->getDetail();
 //     return view('detail', ['products' => $products]);
 // }
+//編集画面表示edit
+public function edit(Request $request){
+  $product_model= new Product();
+  $products= $product_model->getedit();
+  return view('edit', ['products' => $products]);
+}
+
 //商品編集
-public function edit(Request $request,$id){
+public function index(Request $request){
   $product_model= new Product();
    DB::beginTransaction();
     try {
-       $image = $request->file('img');
+       $image = $request->file('image');
      if($image){
        $file_name = $image->getClientOriginalName();
        $image->storeAs('public/images', $file_name);
@@ -72,9 +79,7 @@ public function edit(Request $request,$id){
      }else{
        $img_path=null;
      } 
-
-  $products = $product_model->getedit($request,$id);
-  $model->edit($request,$img_path);
+  $model->index($request,$img_path);
    DB::commit();
  } catch (\Exception $e) {
      DB::rollback();
@@ -92,14 +97,14 @@ public function edit(Request $request,$id){
     DB::commit();
   } catch (\Exception $e) {
       DB::rollback();
-      return back();
+      // return back();
   }
-    return redirect()->route('list');
+    return redirect()->route('edit');
 }
   //新規登録画面regist
   public function regist(Request $request){
       $company_model= new Company();
-      $companies = $company_model->getregist();
+      $companies = $company_model->getregist($request);
       return view('regist', ['companies' => $companies]);
   }
    
@@ -122,7 +127,6 @@ public function edit(Request $request,$id){
         } catch (\Exception $e) {
           DB::rollback();
           return back();
-          $products->save();
         }
           return redirect()->route('list');
   }
