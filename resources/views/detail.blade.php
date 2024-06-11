@@ -7,6 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <h1>商品情報詳細画面</h1>
+            
             <table>
                 <tr>
                    <td><label for="product_id">ID</label></td>
@@ -37,11 +38,14 @@
                     <td>{{ $products-> comment }}</td>
                 </tr>
                 <tr>
-                         <td><a href="{{ route('edit', ['id' => $products->id]) }}" class="btn btn-primary">編集</a></td>
                          <td><input type="button" value="戻る" 
-                        onclick="location.href='{{route('list')}}'" ></td>
+                        onclick="location.href='{{route('list')}}'"></td>
+                        <td>
+                         <input type="button" value="編集"  onclick="location.href='{{ route('edit', ['id' => $products->id]) }}'" class="btn btn-primary">
+                        </td>
                 </tr>
-            </table>   
+            </table> 
+                       
         </div>
     </div>
 @endsection

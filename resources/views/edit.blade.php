@@ -1,24 +1,20 @@
 @extends('app')
-
 @section('title','商品編集画面')
-
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
             <h1>商品情報編集画面</h1>
-            <form action="{{ route('update', ['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('updateSubmit', ['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             <table>
               <tr>
-                
                     <td><label for="id">id</label></td>
-                    <td>{{ $products->id }}</td> 
+                    <td>{{ $products-> id }}</td> 
               </tr>
               <tr>
-            
                     <td><label for="product_name">商品名*</label></td>
                     <td><input type="text" class="form-inline"  name="product_name" value="{{old('product_name')}}"></td>
               </tr>
@@ -47,14 +43,15 @@
               <tr>
                 
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('update')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
+                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>
-                <td><a href="{{route('detail',['id' => $product-> id])}}" class="btn btn-primary">戻る</a></td>   
-              </tr>    
+                <td><a href="{{route('detail',['id' => $product-> id])}}" class="btn btn-primary">戻る</a></td>
+                <td><button type="submit" class="btn btn-success">更新</button></td>
+              </tr>      
             </table>
-        </form>
+            </form>
        </div>
     </div>
 @endsection

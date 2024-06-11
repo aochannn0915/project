@@ -42,7 +42,7 @@
                         <td>
                             <input type="button" value="詳細" 
                         onclick="location.href='{{route('detail',['id' => $product->id])}}'" >
-                         <td><form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
+                         <td><form action="{{ route('deleteSubmit', ['id' => $product->id]) }}" method="POST"  enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-danger">削除</button>
