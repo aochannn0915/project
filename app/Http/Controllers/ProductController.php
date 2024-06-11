@@ -53,25 +53,41 @@ class ProductController extends Controller
     $products= $product_model->getdetail($id);
     return view('detail', ['products' => $products]);
   }
-// //詳細検索detail
-// public function searchdetail(){
-//     $product_model= new Product();
-//     $products= $product_model->getDetail();
-//     return view('detail', ['products' => $products]);
-// }
 //編集画面表示edit
-public function edit(Request $request){
+public function edit(Request $request,$id){
   $product_model= new Product();
-  $products= $product_model->getedit();
+  $products= $product_model->getedit($id);
   return view('edit', ['products' => $products]);
 }
 
-//商品編集
-public function index(Request $request){
-  $product_model= new Product();
-   DB::beginTransaction();
+// //商品編集
+// public function index(Request $request,$id){
+//   $product_model= new Product();
+//    DB::beginTransaction();
+//     try {
+//        $image = $request->file('image');
+//      if($image){
+//        $file_name = $image->getClientOriginalName();
+//        $image->storeAs('public/images', $file_name);
+//        $img_path = 'storage/images/' . $file_name;
+//      }else{
+//        $img_path=null;
+//      } 
+//   $model->index($request,$img_path);
+//    DB::commit();
+//  } catch (\Exception $e) {
+//      DB::rollback();
+//      return back();
+//  }
+//  return redirect()->route('edit');
+// }
+
+  ///更新
+  public function update(Request $request,$id){
+    $product=Product::find ($id);
+    DB::beginTransaction();
     try {
-       $image = $request->file('image');
+      $image = $request->file('image');
      if($image){
        $file_name = $image->getClientOriginalName();
        $image->storeAs('public/images', $file_name);
@@ -79,25 +95,18 @@ public function index(Request $request){
      }else{
        $img_path=null;
      } 
-  $model->index($request,$img_path);
-   DB::commit();
- } catch (\Exception $e) {
-     DB::rollback();
-     return back();
- }
- return redirect()->route('detail');
-}
+     $product->product_name = $request->input('product_name');
+     $product->company_id = $request->input('company_name');
+     $product->price = $request->input('price');
+     $product->stock = $request->input('stock');
+     $product->comment = $request->input('comment');
+     $product->img_path = $img_path;
 
-  ///更新
-  public function update(Request $request,$id){
-    DB::beginTransaction();
-    try {
-    $model = new Product();
-    $model->getupdate($request,$id);
+     $product->save();
     DB::commit();
   } catch (\Exception $e) {
       DB::rollback();
-      // return back();
+      return back();
   }
     return redirect()->route('edit');
 }
@@ -131,15 +140,15 @@ public function index(Request $request){
           return redirect()->route('list');
   }
   //削除
-  public function delete($id){
+  public function delete($id)
+  {
       DB::beginTransaction();
       try {
         $model = new Product();
-        $model->delete($id);
+        $model->delete();
         DB::commit();
       }catch (Exception $e) {
         DB::rollback();
-        
       }
       return redirect()->route('list');
       

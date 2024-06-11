@@ -5,17 +5,17 @@
 @section('content')
     <div class="container">
         <div class="row justify-content-center">
-        <link href="{{ asset('css/app.css') }}" ref="stylesheet">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
             <h1>商品情報編集画面</h1>
-            <form action="{{ route('update', ['id' => $products->id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update', ['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
             <table>
               <tr>
                 
                     <td><label for="id">id</label></td>
-                    <td>{{ $product->id }}</td> 
+                    <td>{{ $products->id }}</td> 
               </tr>
               <tr>
             
@@ -27,7 +27,7 @@
                     <td>
                     <select class="company_name" name="company_name"> 
                         @foreach($companies as $company)
-                        <option value="{{ $companies -> id }}">{{ $companies -> company_name }}</option>
+                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select>
                     </td>
@@ -47,17 +47,15 @@
               <tr>
                 
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
+                    <a href="route('update')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>
-                <!-- <form action="{{route('update')}}" method="POST">更新 -->
-                <td><a href="{{route('detail',['id' => $product->id])}}" class="btn btn-primary">戻る</a></td>   
+                <td><a href="{{route('detail',['id' => $product-> id])}}" class="btn btn-primary">戻る</a></td>   
               </tr>    
-                </form>
             </table>
-            
         </form>
+       </div>
     </div>
 @endsection
 

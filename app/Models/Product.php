@@ -80,23 +80,23 @@ class Product extends Model
     // }
     
     //編集
-    public function getedit() {
+    public function getedit($id) {
         $products=DB::table('products')->get();
         return $products;
     }      
     //画像編集処理
-    public function index($request,$img_path){
-        DB::table('products')->insert([
-        'product_name' => $request->input('product_name'),
-        'company_id' => $request->input('company_name'),
-        'price' => $request->input('price'),
-        'stock' => $request->input('stock'),
-        'comment' => $request->input('comment'),
-        'img_path' => $img_path
-        ]);
-      }  
+    // public function index($request,$img_path){
+    //     DB::table('products')->insert([
+    //     'product_name' => $request->input('product_name'),
+    //     'company_id' => $request->input('company_name'),
+    //     'price' => $request->input('price'),
+    //     'stock' => $request->input('stock'),
+    //     'comment' => $request->input('comment'),
+    //     'img_path' => $img_path
+    //     ]);
+    //   }  
     //更新
-    public function getupdate($request,$id){
+    public function getupdate($request,$img_path,$id){
         DB::table('products')
            ->where('products.id', '=', $id)
            ->update([
@@ -124,8 +124,9 @@ class Product extends Model
          ]);
        }
       //削除
-     public function getdelete($id){
+     public function delete(){
         DB::table('products')->where('id', '=', $id)->delete();
+        // return $this ->belongsTo(Company::class);
      }
 }
 

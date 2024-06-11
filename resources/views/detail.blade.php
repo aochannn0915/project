@@ -1,70 +1,47 @@
 
 @extends('app')
 
-@section('title')
+@section('title','商品情報詳細画面')
 
 @section('content')
     <div class="container">
-
         <div class="row justify-content-center">
-        
             <h1>商品情報詳細画面</h1>
             <table>
                 <tr>
-                <div class="form-group">
                    <td><label for="product_id">ID</label></td>
-                   <td>{{ $products->id }}</td>
-                </div>
+                   <td>{{ $products-> id }}</td>
                 </tr>
                 <tr>
-                <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <td>{{ $products->img_path }}</td>        
-                </div>
+                    <td>{{ $products-> img_path }}</td>        
                 </tr>
                 <tr>
-                <div class="form-group">
                     <td><label for="product_name">商品名</label></td>
-                    <td>{{ $products->product_name }}</td>
-                </div>
+                    <td>{{ $products-> product_name }}</td>
                 </tr>
                 <tr>
-                <div class="form-group">
                     <td><label for="company_name">メーカー</label></td>
-                    <td>{{ $products->company_name }}</td>
-                </div>
+                    <td>{{ $products-> company_name }}</td>
                 </tr>
                 <tr>
-                <div class="form-group">
                     <td><label for="price">価格</label></td>
-                    <td>{{ $products->price }}</td>
-                </div>
+                    <td>{{ $products-> price }}</td>
                 </tr>
                 <tr>
-                <div class="form-group">
                     <td><label for="stock">在庫数</label></td>
-                    <td>{{ $products->stock }}</td>
-                </div>
+                    <td>{{ $products-> stock }}</td>
                 </tr>
                 <tr>
-                    <div class="form-group">
                     <td><label for="comment">コメント</label></td>
-                    <td>{{ $products->comment }}</td>
-                </div>
+                    <td>{{ $products-> comment }}</td>
                 </tr>
                 <tr>
-                    <div class="col-sm-offset-2 col-sm-10 text-left">
-                         <td><input type="button" value="編集" 
-                         onclick="location.href='{{route('edit')}}'"></td> 
+                         <td><a href="{{ route('edit', ['id' => $products->id]) }}" class="btn btn-primary">編集</a></td>
                          <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
-                      
-                    </div>
-                        
                 </tr>
-          
             </table>   
-            
         </div>
     </div>
 @endsection

@@ -17,7 +17,7 @@
                     </select>
                     <input type="submit" value="検索">  
                 </form>
-                </div>
+            </div>
             <table>
                 <thead>
                     <tr>
@@ -42,9 +42,13 @@
                         <td>
                             <input type="button" value="詳細" 
                         onclick="location.href='{{route('detail',['id' => $product->id])}}'" >
-                            <input type="button" value="削除" 
-                        onclick="location.href='{{route('delete',['id' => $product->id])}}'" >
-                        </td>   
+                         <td><form action="{{ route('delete', ['id' => $product->id]) }}" method="POST">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-danger">削除</button>
+                             </form>
+                         </td>
+                          
                     </tr>
                 @endforeach
                 </tbody>
