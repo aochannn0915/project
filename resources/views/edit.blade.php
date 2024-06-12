@@ -47,7 +47,7 @@
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>
-                <td><a href="{{route('detail',['id' => $product-> id])}}" class="btn btn-primary">戻る</a></td>
+                <td><a href="{{route('detail',['id' => $products-> id])}}" class="btn btn-primary">戻る</a></td>
                 <td><button type="submit" class="btn btn-success">更新</button></td>
               </tr>      
             </table>

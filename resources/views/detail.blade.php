@@ -7,7 +7,8 @@
     <div class="container">
         <div class="row justify-content-center">
             <h1>商品情報詳細画面</h1>
-            
+            <form action="{{ route('edit', ['id' => $products->id]) }}'" method="GET" enctype='multipart/form-data'>
+             @csrf
             <table>
                 <tr>
                    <td><label for="product_id">ID</label></td>
@@ -40,12 +41,10 @@
                 <tr>
                          <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'"></td>
-                        <td>
-                         <input type="button" value="編集"  onclick="location.href='{{ route('edit', ['id' => $products->id]) }}'" class="btn btn-primary">
-                        </td>
+                        <td><input type="submit" value="編集"></td>
                 </tr>
             </table> 
-                       
+            </form>          
         </div>
     </div>
 @endsection

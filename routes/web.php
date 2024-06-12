@@ -28,7 +28,8 @@ Route::post('/submit', [App\Http\Controllers\ProductController::class, 'submit']
 Route::get('/search', [App\Http\Controllers\ProductController::class, 'search'])->name('search');//検索
 Route::get('/detail/{id}', [App\Http\Controllers\ProductController::class, 'detail'])->name('detail');//詳細
 Route::get('/edit/{id}',[App\Http\Controllers\ProductController::class, 'edit'])->name('edit');//編集
-Route::PUT('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateSubmit');//更新
+Route::post('/display',[App\Http\Controllers\ProductController::class, 'display'])->name('display');//編集表示
+Route::put('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateSubmit');//更新
 Route::delete('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('deleteSubmit');//削除
 
 
