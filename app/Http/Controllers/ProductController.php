@@ -107,7 +107,6 @@ class ProductController extends Controller
    
     // 登録処理 
     public function submit(Request $request){
-      //dd($request);
       $model = new Product();
       DB::beginTransaction();
       try {
@@ -133,7 +132,7 @@ class ProductController extends Controller
       DB::beginTransaction();
       try {
         $model = new Product();
-        $model->deleteSubmit($id);
+        $model->deleteProduct($id);
         DB::commit();
       }catch (Exception $e) {
         DB::rollback();

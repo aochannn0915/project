@@ -30,7 +30,7 @@ Route::get('/detail/{id}', [App\Http\Controllers\ProductController::class, 'deta
 Route::get('/edit/{id}',[App\Http\Controllers\ProductController::class, 'edit'])->name('edit');//編集
 Route::post('/display',[App\Http\Controllers\ProductController::class, 'display'])->name('display');//編集表示
 Route::put('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateSubmit');//更新
-Route::delete('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('deleteSubmit');//削除
+Route::delete('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('deleteProduct');//削除
 
 
 

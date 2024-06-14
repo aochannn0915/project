@@ -54,8 +54,8 @@
                 <div>
                     <td><input type="button" value="戻る" 
                         onclick="location.href='{{route('list')}}'" ></td>
-                        <td><input type="submit" value="新規登録" ></td>
-                   </form>
+                    <td><input type="submit" value="新規登録" ></td>
+                </form>
                 </table>
             
         </div>

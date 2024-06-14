@@ -99,8 +99,8 @@ class Product extends Model
          ]);
        }
       //削除
-     public function deleteSubmit($id){
-        DB::table('products')->where('id', '=', $id)->deleteSubmit($id);
+     public function deleteProduct($id){
+        DB::table('products')->where('id', '=', $id)->delete($id);
      }
 }
 
