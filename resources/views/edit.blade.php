@@ -12,38 +12,38 @@
             <table>
               <tr>
                     <td><label for="id">id</label></td>
-                    <td>{{ $products-> id }}</td> 
+                    <td><input type="text" class="form-inline"  name="id" value="{{ old('$products-> id')}}"></td> 
               </tr>
               <tr>
                     <td><label for="product_name">商品名*</label></td>
-                    <td><input type="text" class="form-inline"  name="product_name" value="{{old('product_name')}}"></td>
+                    <td><input type="text" class="form-inline"  name="product_name" value="{{old('products -> product_name')}}"></td>
               </tr>
               <tr>
                     <td> <label for="company_name">メーカー名*</label></td>
                     <td>
                     <select class="company_name" name="company_name"> 
                         @foreach($companies as $company)
-                        <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
+                        <option value="{{ $company -> id }}">  {{ $company -> company_name }}</option>
                         @endforeach
                     </select>
                     </td>
               </tr>
               <tr>
                     <td><label for="price">価格*</label></td>
-                    <td><input type="text" class="form-inline" name="price" value="{{old('price')}}"></td>
+                    <td><input type="text" class="form-inline" name="price" value="{{old('products -> price')}}"></td>
               </tr>
               <tr>
                     <td><label for="stock">在庫数*</label></td>
-                    <td><input type="text" class="form-inline" name="stock" value="{{old('stock')}}"></td> 
+                    <td><input type="text" class="form-inline" name="stock" value="{{old('products -> stock')}}"></td> 
               </tr>
               <tr>
                     <td><label for="comment">コメント</label></td>
-                    <td><input type="text" class="form-inline"name="comment" value="{{old('comment')}}"></td>
+                    <td><input type="text" class="form-inline"name="comment" value="{{old('products -> comment')}}"></td>
               </tr>
               <tr>
                 
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('img_path')}}"></a>
+                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('products ->img_path')}}"></a>
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>

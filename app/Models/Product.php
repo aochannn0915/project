@@ -88,7 +88,7 @@ class Product extends Model
         return $products;
     }
      //新規登録処理
-      public function submit($request){
+      public function submit($request,$img_path){
          DB::table('products')->insert([
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_name'),
@@ -102,6 +102,10 @@ class Product extends Model
      public function deleteProduct($id){
         DB::table('products')->where('id', '=', $id)->delete($id);
      }
+      public function deletAlert(){
+        DB::table('products')->get();
+        return $products;
+    }
 }
 
     

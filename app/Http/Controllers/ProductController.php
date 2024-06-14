@@ -38,7 +38,7 @@ class ProductController extends Controller
       return view('list',['products' => $products,'companies' => $companies]);
   }
   //検索機能
-  public function search(Request $id){
+  public function search(Request $request){
       $company_id = $request->input('company_id');
       $keyword=$request->input('keyword');
       $model = new Product();
@@ -106,7 +106,7 @@ class ProductController extends Controller
   }
    
     // 登録処理 
-    public function submit(Request $request){
+    public function submit(Request $request,$img_path){
       $model = new Product();
       DB::beginTransaction();
       try {
@@ -118,7 +118,7 @@ class ProductController extends Controller
         }else{
           $img_path=null;
         } 
-          $model->submit($request);
+          $model->submit($request,$img_path);
           DB::commit();
         } catch (\Exception $e) {
           DB::rollback();
@@ -139,5 +139,13 @@ class ProductController extends Controller
       }
       return redirect()->route('list');
   }  
+  //削除確認ダイアログ
+   function deleteAlert(){
+     if(window.confirm('本当に削除してよろしいですか？')){
+        
+     }else{
+         return false;
+     }
+  }
 }
    

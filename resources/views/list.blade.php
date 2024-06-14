@@ -45,7 +45,7 @@
                          <td><form action="{{ route('deleteProduct', ['id' => $product->id]) }}" method="POST"  enctype="multipart/form-data">
                                     @csrf
                                     @method('delete')
-                                    <button type="submit" class="btn btn-danger">削除</button>
+                                   <input type="submit" value='削除' class='btn btn-outline-danger' onClick='return deleteAlert();'>
                              </form>
                          </td>
                           
@@ -55,4 +55,9 @@
             </table>
         </div>
     </div>
+    <script>
+        function deleteAlert() {
+            return confirm('削除します。よろしいですか？');
+        }
+    </script>
 @endsection
