@@ -88,7 +88,7 @@ class Product extends Model
         return $products;
     }
      //新規登録処理
-      public function submit($request,$img_path){
+      public function submit($img_path){
          DB::table('products')->insert([
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_name'),

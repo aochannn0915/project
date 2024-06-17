@@ -106,7 +106,7 @@ class ProductController extends Controller
   }
    
     // 登録処理 
-    public function submit(Request $request,$img_path){
+    public function submit(Request $img_path){
       $model = new Product();
       DB::beginTransaction();
       try {
@@ -118,7 +118,7 @@ class ProductController extends Controller
         }else{
           $img_path=null;
         } 
-          $model->submit($request,$img_path);
+          $model->submit($img_path);
           DB::commit();
         } catch (\Exception $e) {
           DB::rollback();
