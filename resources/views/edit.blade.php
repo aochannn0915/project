@@ -8,12 +8,10 @@
             <h1>商品情報編集画面</h1>
             <form action="{{ route('updateSubmit', ['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
             <table>
               <tr>
                     <td><label for="id">id</label></td>
-                    <td><input type="text" class="form-inline"  name="id" value="{{ old('$products-> id')}}"></td> 
-              </tr>
+                    <<td>{{ $products->id }}</td>
               <tr>
                     <td><label for="product_name">商品名*</label></td>
                     <td><input type="text" class="form-inline"  name="product_name" value="{{old('products -> product_name')}}"></td>

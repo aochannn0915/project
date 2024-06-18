@@ -9,7 +9,7 @@
                 <div class="form-group">
                 <form action="{{ route('search') }}" method="GET" enctype='multipart/form-data' >
                     @csrf
-                    <input placeholder="検索キーワード" type="text" name="keyword">
+                    <input placeholder="検索キーワード" type="text" name="keyword" >
                     <select class="company_id" id="company_id" name="company_id"> 
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>

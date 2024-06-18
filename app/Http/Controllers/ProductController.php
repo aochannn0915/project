@@ -30,23 +30,30 @@ class ProductController extends Controller
       return view('list', ['products' => $products]);
   }
   //一覧画面表示
-  public function list(){
+  public function list(Request $request){
+      $company_id = $request->input('company_id');
+      $keyword=$request->input('keyword');
+
       $product_model= new Product();
-      $products = $product_model->showRelation();
       $company_model= new Company();
+      if ($company_id || $keyword) {
+      $products = $product_model->getsearch($keyword,$company_id);
+  } else {
+     $products = $product_model->showRelation();
+  }
+      
       $companies = $company_model->getAll();
       return view('list',['products' => $products,'companies' => $companies]);
   }
   //検索機能
-  public function search(Request $request){
-      $company_id = $request->input('company_id');
-      $keyword=$request->input('keyword');
-      $model = new Product();
-      $products=$model->getsearch($keyword,$company_id);
-      $company_model= new Company();
-      $companies = $company_model->getAll();
-      return view('list',['products' => $products,'companies' => $companies]);
-  }
+  // public function search(Request $request){
+  //     $company_id = $request->input('company_id');
+  //     $keyword=$request->input('keyword');
+  //     $model = new Product();
+  //     $company_model= new Company();
+  //     $companies = $company_model->getAll();
+  //     return view('list',['products' => $products,'companies' => $companies]);
+  // }
   //詳細画面表示detail
   public function detail($id){
     $product_model= new Product();
@@ -56,15 +63,7 @@ class ProductController extends Controller
   //編集画面表示edit
   public function edit($id){
     $product_model= new Product();
-    $products= $product_model->getedit($id);
-    $company_model= new Company();
-    $companies = $company_model->getAll();
-    return view('edit', ['products' => $products,'companies' => $companies]);
-  }
-  //編集登録処理display
-  public function display(Request $request,$img_path){
-      $model = new Product();
-      DB::beginTransaction();
+    DB::beginTransaction();
       try {
            $image = $request->file('image');
          if($image){
@@ -74,30 +73,38 @@ class ProductController extends Controller
       }else{
            $img_path=null;
       } 
-         $model->display($request,$img_path);
-      DB::commit();
+    $products= $product_model->getedit($id);
+    DB::commit();
       } catch (\Exception $e) {
            DB::rollback();
            return back();
       }
-        return redirect()->route('edit');
+    $company_model= new Company();
+    $companies = $company_model->getAll();
+    return view('edit', ['products' => $products,'companies' => $companies]);
+  }
+  //更新処理update
+  public function updateSubmit(Request $request,$id){
+     $products=Product::find($id);
+     $product_model=$product_model->updateSubmit($request,$id);
+     return redirect()->route('edit');
   }
   
 
-  ///更新
-  public function update($id){
-      DB::beginTransaction();
-      try {
-        $model = new Product();
-        $model->updateSubmit($id);
-        DB::commit();
-      } catch (\Exception $e) {
-        DB::rollback();
-        return back();
-      }
-      $product->save();
-      return redirect()->route('edit');
-    }
+  // ///更新
+  // public function update($id){
+  //     DB::beginTransaction();
+  //     try {
+  //       $model = new Product();
+  //       $model->updateSubmit($id);
+  //       DB::commit();
+  //     } catch (\Exception $e) {
+  //       DB::rollback();
+  //       return back();
+  //     }
+  //     $product->save();
+  //     return redirect()->route('edit');
+  //   }
   //新規登録画面regist
   public function regist(Request $request){
       $company_model= new Company();
@@ -139,13 +146,5 @@ class ProductController extends Controller
       }
       return redirect()->route('list');
   }  
-  //削除確認ダイアログ
-   function deleteAlert(){
-     if(window.confirm('本当に削除してよろしいですか？')){
-        
-     }else{
-         return false;
-     }
-  }
 }
    
