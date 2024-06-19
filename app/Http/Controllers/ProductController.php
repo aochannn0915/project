@@ -35,13 +35,12 @@ class ProductController extends Controller
       $keyword=$request->input('keyword');
 
       $product_model= new Product();
-      $company_model= new Company();
       if ($company_id || $keyword) {
-      $products = $product_model->getsearch($keyword,$company_id);
+      $products = $product_model->getlist($keyword,$company_id);
   } else {
-     $products = $product_model->showRelation();
+      $products = $product_model->showRelation();
   }
-      
+      $company_model= new Company();
       $companies = $company_model->getAll();
       return view('list',['products' => $products,'companies' => $companies]);
   }
@@ -109,7 +108,7 @@ class ProductController extends Controller
   public function regist(Request $request){
       $company_model= new Company();
       $companies = $company_model->getregist($request);
-      return view('regist', ['companies' => $companies]);
+      return view('list', ['companies' => $companies]);
   }
    
     // 登録処理 

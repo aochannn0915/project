@@ -7,11 +7,12 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
          <h1>商品一覧画面</h1>
                 <div class="form-group">
-                <form action="{{ route('search') }}" method="GET" enctype='multipart/form-data' >
+                <form action="{{ route('list') }}" method="GET" enctype='multipart/form-data' >
                     @csrf
                     <input placeholder="検索キーワード" type="text" name="keyword" >
                     <select class="company_id" id="company_id" name="company_id"> 
                         @foreach($companies as $company)
+                        <option value=""></option>
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
                     </select>
