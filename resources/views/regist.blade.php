@@ -48,8 +48,9 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('submit')" enctype='multipart/form-data' value="{{old('products ->img_path')}}"></a>
-	                <td><input type="file" name="image" value="{{old('img_path')}}"></td>
+                    <a href="route('submit')" enctype='multipart/form-data'></a>
+	               
+                    <td><input type="file" name="image" value="{{old('img_path')}}"></td>
                 </div>
                 </tr>
                 <div>

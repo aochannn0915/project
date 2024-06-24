@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
 class Product extends Model
 
@@ -31,39 +32,45 @@ class Product extends Model
     }
     //一覧画面
     public function getlist(Request $request){
-        $company_id = $request->input('company_id');
-        $keyword = $request->input('keyword');
-        if ($company_id || $keyword) {
-            $query = DB::table('products')
-                ->join('companies', 'products.company_id', '=', 'companies.id')
-                ->select('products.*', 'companies.company_name');
-            if ($company_id) {
-                $query->where('products.company_id', '=', $company_id);
-            }
-            if ($keyword) {
-                $query->where('products.name', 'like', '%' . $keyword . '%');
-            }
-            $products = $query->get();
-        } else {
-            $products = Product::all();
-        }
-        $products = Product::all();
-        return $products;
+        $product_model= new Products();
+        $products = $product_model->showRelation();
+        $company_model= new Companies();
+        $companies = $company_model->getAll();
+        return view('list',['products' => $products,'companies' => $companies]);
     }
-    ///検索
-    // public function getsearch($keyword,$company_id){
-    //     $query= DB::table('products')
-    //     ->join('companies', 'products.company_id', '=', 'companies.id')
-    //     ->select('products.*','companies.company_name');
-    //     if($company_id){
-    //        $query->where('products.company_id', '=', $company_id)->get();
+    //     $company_id = $request->input('company_id');
+    //     $keyword = $request->input('keyword');
+    //     if ($company_id || $keyword) {
+    //         $query = DB::table('products')
+    //             ->join('companies', 'products.company_id', '=', 'companies.id')
+    //             ->select('products.*', 'companies.company_name');
+    //         if ($company_id) {
+    //             $query->where('products.company_id', '=', $company_id);
+    //         }
+    //         if ($keyword) {
+    //             $query->where('products.name', 'like', '%' . $keyword . '%');
+    //         }
+    //         $products = $query->get($request);
+    //     } else {
+    //         $products = Product::all();
     //     }
-    //     if($keyword){
-    //     $products=$query->where('company_id','like','%%')->get();
-    //     }
-    //     $products = $query->get();
+    //     $products = Product::all();
     //     return $products;
     // }
+    ///検索
+     public function getsearch($keyword){
+         $query= DB::table('products')
+         ->join('companies', 'products.company_id', '=', 'companies.id')
+         ->select('products.*','companies.company_name');
+         if($company_id){
+            $query->where('products.company_id', '=', $company_id)->get();
+         }
+         if($keyword){
+         $products=$query->where('company_id','like','%%')->get();
+         }
+         $products = $query->get();
+         return $products;
+     }
     //詳細
     public function getdetail($id) {
         $products = DB::table('products')
@@ -73,15 +80,7 @@ class Product extends Model
         ->first();
         return $products;
     }
-    
-    // //編集
-    // public function getedit($id) {
-    //      $products=DB::table('products')
-    //      ->join('companies', 'products.company_id', '=', 'companies.id')
-    //     ->where('products.id', '=', $id)
-    //     ->first();
-    //     return $products;
-    // }      
+  
     //編集
     public function getedit($id){
         $products = DB::table('products')->get();
@@ -90,14 +89,16 @@ class Product extends Model
    
      //更新
      public function updateSubmit($request, $id){
-        DB::table('products')->insert([
-            'product_name' => $request->input('product_name'),
-            'company_name' => $request->input('company_name'),
-            'price'        => $request->input('price'),
-            'stock'        => $request->input('stock'),
-            'comment'      => $request->input('comment'),
-            'img_path'     => $img_path
-          ])->save();
+        $products=DB::table('products') ->insert([
+             'id'           =>$request->input('id'),
+             'product_name' => $request->input('product_name'),
+             'company_name' => $request->input('company_name'),
+             'price'        => $request->input('price'),
+             'stock'        => $request->input('stock'),
+             'comment'      => $request->input('comment'),
+             'img_path'     => $img_path
+           ])->save();
+          DB::table('products')->where('id', '=', $id)->updateSubmit($id);
           return $products;
     }
       //新規登録画面regist
@@ -106,7 +107,7 @@ class Product extends Model
         return $products;
     }
      //新規登録処理
-      public function submit($img_path){
+      public function submit($request){
          DB::table('products')->insert([
          'product_name' => $request->input('product_name'),
          'company_id' => $request->input('company_name'),

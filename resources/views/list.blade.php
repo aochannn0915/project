@@ -12,13 +12,13 @@
                     <input placeholder="検索キーワード" type="text" name="keyword" >
                     <select class="company_id" id="company_id" name="company_id"> 
                         @foreach($companies as $company)
-                        <option value=""></option>
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
+                        <option value=""></option>
                     </select>
                     <input type="submit" value="検索">  
                 </form>
-            </div>
+        
             <table>
                 <thead>
                     <tr>

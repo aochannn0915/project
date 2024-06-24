@@ -41,7 +41,7 @@
               <tr>
                 
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('edit')" enctype='multipart/form-data' value="{{old('products ->img_path')}}"></a>
+                    <a href="route('updateSubmit)" enctype='multipart/form-data' value="{{old('products ->img_path')}}"></a>
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>
