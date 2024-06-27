@@ -27,7 +27,7 @@ Route::get('/regist', [App\Http\Controllers\ProductController::class, 'regist'])
 Route::post('/submit', [App\Http\Controllers\ProductController::class, 'submit'])->name('submit');//新規登録処理
 Route::get('/detail/{id}', [App\Http\Controllers\ProductController::class, 'detail'])->name('detail');//詳細
 Route::get('/edit/{id}',[App\Http\Controllers\ProductController::class, 'edit'])->name('edit');//編集
-Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'update'])->name('updateSubmit');//更新
+Route::post('/update/{id}', [App\Http\Controllers\ProductController::class, 'updateSubmit'])->name('updateSubmit');//更新
 Route::delete('/delete/{id}', [App\Http\Controllers\ProductController::class, 'delete'])->name('deleteProduct');//削除
 
 

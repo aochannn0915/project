@@ -8,6 +8,8 @@ use App\Models\Company;
 //use App\Models\Sale;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -32,27 +34,18 @@ class ProductController extends Controller
   //一覧画面表示
   public function list(Request $request){
       $company_id = $request->input('company_id');
-      $keyword=$request->input('keyword');
-
+      $keyword    = $request->input('keyword');
       $product_model= new Product();
-      if ($company_id || $keyword) {
-      $products = $product_model->getsearch($request);
-  } else {
+      if ($company_id || $keyword){
+      $products = $product_model->getsearch($company_id, $keyword);
+    } else {
       $products = $product_model->showRelation();
-  }
+    }
       $company_model= new Company();
       $companies = $company_model->getAll();
       return view('list',['products' => $products,'companies' => $companies]);
   }
-  //検索機能
-  // public function search(Request $request){
-  //     $company_id = $request->input('company_id');
-  //     $keyword=$request->input('keyword');
-  //     $model = new Product();
-  //     $company_model= new Company();
-  //     $companies = $company_model->getAll();
-  //     return view('list',['products' => $products,'companies' => $companies]);
-  // }
+  
   //詳細画面表示detail
   public function detail($id){
     $model= new Product();
@@ -62,13 +55,13 @@ class ProductController extends Controller
   //編集画面表示edit
   public function edit($id){
     $product_model= new Product();
-    $products= $product_model->getedit($id);
+    $products= $product_model->getdetail($id);
     $company_model= new Company();
     $companies = $company_model->getAll();
     return view('edit', ['products' => $products,'companies' => $companies]);
   }
   //更新処理updateSubmit
-  public function updateSubmit(Request $request,$id){
+  public function updateSubmit(Request $request, $id){
      $model= new Product();
       DB::beginTransaction();
      try {
@@ -77,66 +70,67 @@ class ProductController extends Controller
           $file_name = $image->getClientOriginalName();
           $image->storeAs('public/images', $file_name);
           $img_path = 'storage/images/' . $file_name;
+          $products= $model->updateSubmit($request, $id, $img_path);
      }else{
-          $img_path=null;
+          $model->updateSubmitNoImg($request,$id);
      } 
-   $products= $model->updateSubmit($request,$id);
-   DB::commit();
-     } catch (\Exception $e) {
-          DB::rollback();
-          return back();
-     }
-     return redirect()->route('edit');
+      DB::commit();
+      } catch (\Exception $e) {
+            DB::rollback();
+            return back();
+      }
+     return redirect()->route('edit',['id'=> $id]);
   }
-  
-
-  // ///更新
-  // public function update($id){
-  //     DB::beginTransaction();
-  //     try {
-  //       $model = new Product();
-  //       $model->updateSubmit($id);
-  //       DB::commit();
-  //     } catch (\Exception $e) {
-  //       DB::rollback();
-  //       return back();
-  //     }
-  //     $product->save();
-  //     return redirect()->route('edit');
-  //   }
   //新規登録画面regist
   public function regist(){
       $product_model = new Product();
       $products= $product_model->getregist();
       $company_model= new Company();
       $companies = $company_model->getregist();
-      return view('list', ['products' => $products,'companies' => $companies]);
+      return view('regist', ['products' => $products,'companies' => $companies]);
   }
    
     // 登録処理 
-    public function submit(Request $request){
-          $image = $request->file('image');
-        if($image){
-          $file_name = $image->getClientOriginalName();
-          $image->storeAs('public/images', $file_name);
-          $img_path = 'storage/images/' . $file_name;
-        }else{
-          $img_path=null;
-        } 
-        $product_model = new Product();
-        DB::beginTransaction();
-        try {
-          $products= $product_model->getsubmit($request);
-          DB::commit();
-        } catch (\Exception $e) {
-          DB::rollback();
-          return back();
-        }
-          return redirect()->route('regist');
+public function submit(Request $request){
+  
+  if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
+      $img_path = $request->file('img_path')->store('images', 'public');
+  } else {
+      $img_path = null; // 画像がアップロードされなかった場合の処理
   }
+
+  DB::table('products')->insert([
+      'product_name' => $request->input('product_name'),
+      'company_id' => $request->input('company_id'),
+      'price' => $request->input('price'),
+      'stock' => $request->input('stock'),
+      'comment' => $request->input('comment'),
+      'img_path' => $img_path
+  ]);
+  $image = $request->file('image');
+  if ($image) {
+      $file_name = $image->getClientOriginalName();
+      $image->storeAs('public/images', $file_name);
+      $img_path = 'storage/images/' . $file_name;
+  } else {
+      $img_path = null;
+  }
+
+  $product_model = new Product();
+  DB::beginTransaction();
+  try {
+      $product_model->getSubmit($request, $img_path); // $img_pathを渡す
+      DB::commit();
+  } catch (\Exception $e) {
+      DB::rollback();
+      Log::error('Product submit error: ' . $e->getMessage());
+      return back()->withErrors(['error' => 'Product submit failed']);
+  }
+  return redirect()->route('list');
+}
+
   //削除
-  public function delete($id)
-  {
+  public function delete($id){
       DB::beginTransaction();
       try {
         $model = new Product();

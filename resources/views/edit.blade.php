@@ -11,10 +11,10 @@
             <table>
               <tr>
                     <td><label for="id">id</label></td>
-                    <<td>{{ $products->id }}</td>
+                    <td>{{ $products->id }}</td>
               <tr>
                     <td><label for="product_name">商品名*</label></td>
-                    <td><input type="text" class="form-inline"  name="product_name" value="{{old('products -> product_name')}}"></td>
+                    <td><input type="text" class="form-inline"  name="product_name" value="{{$products -> product_name}}"></td>
               </tr>
               <tr>
                     <td> <label for="company_name">メーカー名*</label></td>
@@ -28,20 +28,20 @@
               </tr>
               <tr>
                     <td><label for="price">価格*</label></td>
-                    <td><input type="text" class="form-inline" name="price" value="{{old('products -> price')}}"></td>
+                    <td><input type="text" class="form-inline" name="price" value="{{$products -> price}}"></td>
               </tr>
               <tr>
                     <td><label for="stock">在庫数*</label></td>
-                    <td><input type="text" class="form-inline" name="stock" value="{{old('products -> stock')}}"></td> 
+                    <td><input type="text" class="form-inline" name="stock" value="{{$products -> stock}}"></td> 
               </tr>
               <tr>
                     <td><label for="comment">コメント</label></td>
-                    <td><input type="text" class="form-inline"name="comment" value="{{old('products -> comment')}}"></td>
+                    <td><input type="text" class="form-inline"name="comment" value="{{$products -> comment}}"></td>
               </tr>
               <tr>
                 
                     <td><label for="img_path">商品画像</label></td>
-                    <a href="route('updateSubmit)" enctype='multipart/form-data' value="{{old('products ->img_path')}}"></a>
+                    <a href="route('updateSubmit)" enctype='multipart/form-data' value="{{$products ->img_path}}"></a>
 	                <td><input type="file" name="image"></td>
               </tr>
               <tr>

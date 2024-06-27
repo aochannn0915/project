@@ -58,15 +58,15 @@ class Product extends Model
     //     return $products;
     // }
     ///検索
-     public function getsearch($keyword){
+     public function getsearch($company_id, $keyword){
          $query= DB::table('products')
          ->join('companies', 'products.company_id', '=', 'companies.id')
          ->select('products.*','companies.company_name');
          if($company_id){
-            $query->where('products.company_id', '=', $company_id)->get();
+            $query->where('products.company_id', '=', $company_id);
          }
          if($keyword){
-         $products=$query->where('company_id','like','%%')->get();
+         $query->where('products.product_name','like',"%{$keyword}%");
          }
          $products = $query->get();
          return $products;
@@ -80,25 +80,28 @@ class Product extends Model
         ->first();
         return $products;
     }
-  
-    //編集
-    public function getedit($id){
-        $products = DB::table('products')->get();
-        return $products;
-    }
-   
      //更新
-     public function updateSubmit($request, $id){
-        $products=DB::table('products') ->insert([
-             'id'           =>$request->input('id'),
+     public function updateSubmit($request, $id, $img_path){
+        $products=DB::table('products')->where('id', $id)
+        ->update([
              'product_name' => $request->input('product_name'),
-             'company_name' => $request->input('company_name'),
+             'company_id'   => $request->input('company_id'),
              'price'        => $request->input('price'),
              'stock'        => $request->input('stock'),
              'comment'      => $request->input('comment'),
              'img_path'     => $img_path
-           ])->save();
-          DB::table('products')->where('id', '=', $id)->updateSubmit($id);
+        ]);
+          return $products;
+    }
+    public function updateSubitNoImg($request, $id){
+        $products=DB::table('products')->where('id', $id)
+        ->update([
+             'product_name' => $request->input('product_name'),
+             'company_id'   => $request->input('company_id'),
+             'price'        => $request->input('price'),
+             'stock'        => $request->input('stock'),
+             'comment'      => $request->input('comment'),
+        ]);
           return $products;
     }
       //新規登録画面regist
@@ -107,20 +110,21 @@ class Product extends Model
         return $products;
     }
      //新規登録処理
-      public function submit($request){
-         DB::table('products')->insert([
-         'product_name' => $request->input('product_name'),
-         'company_id' => $request->input('company_name'),
-         'price' => $request->input('price'),
-         'stock' => $request->input('stock'),
-         'comment' => $request->input('comment'),
-         'img_path' => $img_path
-         ]);
-       }
+       public function getSubmit($request, $img_path = null)
+    {
+        // データの挿入
+        DB::table('products')->insert([
+            'product_name' => $request->input('product_name'),
+            'company_id' => $request->input('company_id'), // 修正
+            'price' => $request->input('price'),
+            'stock' => $request->input('stock'),
+            'comment' => $request->input('comment'),
+            'img_path' => $img_path
+        ]);
+    }
       //削除
      public function deleteProduct($id){
         DB::table('products')->where('id', '=', $id)->delete($id);
-        return $products;
      }
 }
 

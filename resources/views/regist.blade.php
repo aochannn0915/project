@@ -19,8 +19,8 @@
                 </tr>
                 <tr>
                 <div class="form-group">
-                    <td><label for="company_name">メーカー名*</label></td>
-                    <td><select class="company_name"  name="company_name">
+                    <td><label for="company_id">メーカー名*</label></td>
+                    <td><select class="company_id"  name="company_id">
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
@@ -49,8 +49,7 @@
                 <div class="form-group">
                     <td><label for="img_path">商品画像</label></td>
                     <a href="route('submit')" enctype='multipart/form-data'></a>
-	               
-                    <td><input type="file" name="image" value="{{old('img_path')}}"></td>
+                  <td><input type="file" name="image" value="{{old('img_path')}}"></td>
                 </div>
                 </tr>
                 <div>

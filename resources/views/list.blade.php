@@ -11,10 +11,11 @@
                     @csrf
                     <input placeholder="検索キーワード" type="text" name="keyword" >
                     <select class="company_id" id="company_id" name="company_id"> 
+                    <option value="" placeholder="メーカー名"></option>
                         @foreach($companies as $company)
                         <option value="{{ $company -> id }}">{{ $company -> company_name }}</option>
                         @endforeach
-                        <option value=""></option>
+                       
                     </select>
                     <input type="submit" value="検索">  
                 </form>
@@ -35,7 +36,7 @@
                 @foreach ($products as $product)
                     <tr>    
                         <td>{{ $product -> id }}</td>
-                        <td>{{ $product -> img_path}}</td>
+                        <td><img src="{{asset($product -> img_path) }}" alt="" width="100px"></td>
                         <td>{{ $product -> product_name }}</td>
                         <td>{{ $product -> price }}</td>
                         <td>{{ $product -> stock}}</td>

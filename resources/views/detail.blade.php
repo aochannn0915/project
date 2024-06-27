@@ -7,7 +7,7 @@
     <div class="container">
         <div class="row justify-content-center">
             <h1>商品情報詳細画面</h1>
-            <form action="{{ route('edit', ['id' => $products->id]) }}'" method="GET" enctype='multipart/form-data'>
+            <form action="{{ route('edit', ['id' => $products->id]) }}" method="GET" enctype='multipart/form-data'>
              @csrf
             <table>
                 <tr>
