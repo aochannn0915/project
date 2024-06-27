@@ -38,25 +38,7 @@ class Product extends Model
         $companies = $company_model->getAll();
         return view('list',['products' => $products,'companies' => $companies]);
     }
-    //     $company_id = $request->input('company_id');
-    //     $keyword = $request->input('keyword');
-    //     if ($company_id || $keyword) {
-    //         $query = DB::table('products')
-    //             ->join('companies', 'products.company_id', '=', 'companies.id')
-    //             ->select('products.*', 'companies.company_name');
-    //         if ($company_id) {
-    //             $query->where('products.company_id', '=', $company_id);
-    //         }
-    //         if ($keyword) {
-    //             $query->where('products.name', 'like', '%' . $keyword . '%');
-    //         }
-    //         $products = $query->get($request);
-    //     } else {
-    //         $products = Product::all();
-    //     }
-    //     $products = Product::all();
-    //     return $products;
-    // }
+    
     ///検索
      public function getsearch($company_id, $keyword){
          $query= DB::table('products')
