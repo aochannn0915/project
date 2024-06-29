@@ -14,12 +14,12 @@ class Product extends Model
 
     //login
     public function getlogin(){
-        $products= Product::all();
+        $products = DB::table('products')->get();
         return $products;
     }
     //register
     public function getregister(){
-        $products= Product::all();
+        $products = DB::table('products')->get();
         return $products;
     }
     //リレーション
@@ -75,11 +75,11 @@ class Product extends Model
         ]);
           return $products;
     }
-    public function updateSubitNoImg($request, $id){
+    public function updateSubmitNoImg($request, $id){
         $products=DB::table('products')->where('id', $id)
         ->update([
              'product_name' => $request->input('product_name'),
-             'company_id'   => $request->input('company_id'),
+             'company_id'   => $request->input('company_name'),
              'price'        => $request->input('price'),
              'stock'        => $request->input('stock'),
              'comment'      => $request->input('comment'),

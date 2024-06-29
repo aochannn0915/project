@@ -48,23 +48,23 @@ class ProductController extends Controller
   
   //詳細画面表示detail
   public function detail($id){
-    $model= new Product();
-    $products= $model->getdetail($id);
-    return view('detail', ['products' => $products]);
+      $model= new Product();
+      $products= $model->getdetail($id);
+      return view('detail', ['products' => $products]);
   }
   //編集画面表示edit
   public function edit($id){
-    $product_model= new Product();
-    $products= $product_model->getdetail($id);
-    $company_model= new Company();
-    $companies = $company_model->getAll();
-    return view('edit', ['products' => $products,'companies' => $companies]);
+      $product_model= new Product();
+      $products= $product_model->getdetail($id);
+      $company_model= new Company();
+      $companies = $company_model->getAll();
+      return view('edit', ['products' => $products,'companies' => $companies]);
   }
   //更新処理updateSubmit
   public function updateSubmit(Request $request, $id){
      $model= new Product();
       DB::beginTransaction();
-     try {
+      try {
           $image = $request->file('image');
         if($image){
           $file_name = $image->getClientOriginalName();
@@ -76,6 +76,7 @@ class ProductController extends Controller
      } 
       DB::commit();
       } catch (\Exception $e) {
+        \Log::error($e);
             DB::rollback();
             return back();
       }
@@ -116,15 +117,15 @@ public function submit(Request $request){
       $img_path = null;
   }
 
-  $product_model = new Product();
-  DB::beginTransaction();
-  try {
-      $product_model->getSubmit($request, $img_path); // $img_pathを渡す
-      DB::commit();
+    $product_model = new Product();
+    DB::beginTransaction();
+    try {
+        $product_model->getSubmit($request, $img_path); // $img_pathを渡す
+        DB::commit();
   } catch (\Exception $e) {
-      DB::rollback();
-      Log::error('Product submit error: ' . $e->getMessage());
-      return back()->withErrors(['error' => 'Product submit failed']);
+        DB::rollback();
+        Log::error('Product submit error: ' . $e->getMessage());
+        return back()->withErrors(['error' => 'Product submit failed']);
   }
   return redirect()->route('list');
 }
