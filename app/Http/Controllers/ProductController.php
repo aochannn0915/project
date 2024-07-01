@@ -13,18 +13,54 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-  //login 
+  //log
   public function login(){
-      $model= new Product();
-      $products = $model->getlogin();
-      return view('auth.login', ['products' => $products]);
-  }
-  //register
+    $model= new Product();
+    $products = $model->getlogin();
+    return view('auth.login', ['products' => $products]);
+}
+  //login 
+  // public function login(Request $request){
+  //     $model= new Product();
+  //     try {
+  //       $products = $model->getlogin();
+  //       DB::beginTransaction();
+  //       Manager::login([  
+  //           "email_adress" => $request->email_adress,  
+  //           "password" => $request->password,  
+  //       ]);
+  //      DB::commit();
+  //   } catch (\Exception $e) {
+  //     Log::error($e);
+  //     DB::rollback();
+  //     return back();
+  //   }
+  //     return view('auth.login', ['products' => $products]);
+  // }
+  //register表示
   public function register(){
-      $model= new Product();
-      $products = $model->getregister();
-      return view('auth.register', ['products' => $products]);
-  }
+    $model= new Product();
+    $products = $model->getregister();
+    return view('auth.register', ['products' => $products]);
+}
+  //register
+  // public function register(Request $request){
+  //     $model= new Product();
+  //     try {
+  //             $products = $model->getregister();
+  //             DB::beginTransaction();
+  //             Manager::register([  
+  //                 "email" => $request->email,  
+  //                 "password" => $request->password,  
+  //             ]);
+  //            DB::commit();
+  //         } catch (\Exception $e) {
+  //           Log::error($e);
+  //           DB::rollback();
+  //           return back();
+  //         }
+  //           return view('auth.register', ['products' => $products]);
+  //}
   //リレーション
   public function Relation(){
       $model = new Product();

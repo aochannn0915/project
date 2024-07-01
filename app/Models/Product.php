@@ -11,13 +11,13 @@ class Product extends Model
 
 {
     protected $table = ['products'];
-
     //login
     public function getlogin(){
         $products = DB::table('products')->get();
         return $products;
     }
-    //register
+   
+    //register処理
     public function getregister(){
         $products = DB::table('products')->get();
         return $products;

@@ -18,10 +18,10 @@ use App\Http\Controllers\ProductController;
 Route::get('/', function () {
    return view('app');
 });
-Route::get('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('login1');//login
-Route::post('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('login');//login処理
-Route::get('/register',[App\Http\Controllers\ProductController::class, 'register'])->name('registers');//ユーザー登録
-Route::post('/register',[App\Http\Controllers\ProductController::class, 'register'])->name('register');//ユーザー登録処理
+Route::get('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('login');//login
+//Route::post('/login', [App\Http\Controllers\ProductController::class, 'login'])->name('auth.login');//login処理
+Route::get('/register',[App\Http\Controllers\ProductController::class, 'register'])->name('register');//ユーザー登録
+//Route::post('/register',[App\Http\Controllers\ProductController::class, 'register'])->name('register');//ユーザー登録処理
 Route::get('/list', [App\Http\Controllers\ProductController::class, 'list'])->name('list');//商品一覧画面
 Route::get('/regist', [App\Http\Controllers\ProductController::class, 'regist'])->name('regist');//新規登録
 Route::post('/submit', [App\Http\Controllers\ProductController::class, 'submit'])->name('submit');//新規登録処理

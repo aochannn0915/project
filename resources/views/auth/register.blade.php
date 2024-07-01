@@ -5,10 +5,9 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
-
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <h1>ユーザー新規登録画面</h1>
+                    <form action="{{ route('register') }}" method="GET" enctype='multipart/form-data'>
                         @csrf
 
                         <div class="row mb-3">
@@ -63,9 +62,9 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
-                                </button>
+                                <td><input type="button" value="戻る" 
+                        onclick="location.href='{{route('login')}}'" ></td>
+                        <td><button type="submit" class="btn btn-success">新規登録</button></td>
                             </div>
                         </div>
                     </form>
