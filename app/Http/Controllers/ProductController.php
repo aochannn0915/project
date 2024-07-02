@@ -19,54 +19,19 @@ class ProductController extends Controller
     $products = $model->getlogin();
     return view('auth.login', ['products' => $products]);
 }
-  //login 
-  // public function login(Request $request){
-  //     $model= new Product();
-  //     try {
-  //       $products = $model->getlogin();
-  //       DB::beginTransaction();
-  //       Manager::login([  
-  //           "email_adress" => $request->email_adress,  
-  //           "password" => $request->password,  
-  //       ]);
-  //      DB::commit();
-  //   } catch (\Exception $e) {
-  //     Log::error($e);
-  //     DB::rollback();
-  //     return back();
-  //   }
-  //     return view('auth.login', ['products' => $products]);
-  // }
+
   //register表示
-  public function register(){
+  public function register(Request $request){
     $model= new Product();
     $products = $model->getregister();
     return view('auth.register', ['products' => $products]);
 }
-  //register
-  // public function register(Request $request){
-  //     $model= new Product();
-  //     try {
-  //             $products = $model->getregister();
-  //             DB::beginTransaction();
-  //             Manager::register([  
-  //                 "email" => $request->email,  
-  //                 "password" => $request->password,  
-  //             ]);
-  //            DB::commit();
-  //         } catch (\Exception $e) {
-  //           Log::error($e);
-  //           DB::rollback();
-  //           return back();
-  //         }
-  //           return view('auth.register', ['products' => $products]);
-  //}
   //リレーション
   public function Relation(){
       $model = new Product();
       $products = $model->showRelation();
       return view('list', ['products' => $products]);
-  }
+}
   //一覧画面表示
   public function list(Request $request){
       $company_id = $request->input('company_id');
@@ -80,14 +45,14 @@ class ProductController extends Controller
       $company_model= new Company();
       $companies = $company_model->getAll();
       return view('list',['products' => $products,'companies' => $companies]);
-  }
+}
   
   //詳細画面表示detail
   public function detail($id){
       $model= new Product();
       $products= $model->getdetail($id);
       return view('detail', ['products' => $products]);
-  }
+}
   //編集画面表示edit
   public function edit($id){
       $product_model= new Product();
@@ -95,7 +60,7 @@ class ProductController extends Controller
       $company_model= new Company();
       $companies = $company_model->getAll();
       return view('edit', ['products' => $products,'companies' => $companies]);
-  }
+}
   //更新処理updateSubmit
   public function updateSubmit(Request $request, $id){
      $model= new Product();
@@ -117,7 +82,7 @@ class ProductController extends Controller
             return back();
       }
      return redirect()->route('edit',['id'=> $id]);
-  }
+}
   //新規登録画面regist
   public function regist(){
       $product_model = new Product();
@@ -125,7 +90,7 @@ class ProductController extends Controller
       $company_model= new Company();
       $companies = $company_model->getregist();
       return view('regist', ['products' => $products,'companies' => $companies]);
-  }
+}
    
     // 登録処理 
 public function submit(Request $request){
@@ -133,7 +98,7 @@ public function submit(Request $request){
   if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
       $img_path = $request->file('img_path')->store('images', 'public');
   } else {
-      $img_path = null; // 画像がアップロードされなかった場合の処理
+      $img_path = null; 
   }
 
   DB::table('products')->insert([
@@ -156,7 +121,7 @@ public function submit(Request $request){
     $product_model = new Product();
     DB::beginTransaction();
     try {
-        $product_model->getSubmit($request, $img_path); // $img_pathを渡す
+        $product_model->getSubmit($request, $img_path); 
         DB::commit();
   } catch (\Exception $e) {
         DB::rollback();
