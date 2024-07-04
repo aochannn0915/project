@@ -30,7 +30,7 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="price">価格*</label></td>
-                    <td><lavel><input type="text" class="form-inline" name="price" value="{{old('price')}}"></laravel></td> 
+                    <td><input type="text" class="form-inline" name="price" value="{{old('price')}}"></td> 
                 </div>
                 </tr>
                 <tr>

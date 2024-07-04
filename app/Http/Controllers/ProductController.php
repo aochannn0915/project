@@ -93,43 +93,32 @@ class ProductController extends Controller
 }
    
     // 登録処理 
-public function submit(Request $request){
-  
-  if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
-      $img_path = $request->file('img_path')->store('images', 'public');
-  } else {
-      $img_path = null; 
+  public function submit(Request $request){
+    if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
+        $img_path = $request->file('img_path')->store('images', 'public');
+    } else {
+        $img_path = null; 
+    }
+    $image = $request->file('image');
+    if ($image) {
+        $file_name = $image->getClientOriginalName();
+        $image->storeAs('public/images', $file_name);
+        $img_path = 'storage/images/' . $file_name;
+    } else {
+        $img_path = null;
+    }
+      $product_model = new Product();
+      DB::beginTransaction();
+      try {
+          $product_model->getSubmit($request, $img_path); 
+          DB::commit();
+    } catch (\Exception $e) {
+          DB::rollback();
+          Log::error('Product submit error: ' . $e->getMessage());
+          return back()->withErrors(['error' => 'Product submit failed']);
+    }
+    return redirect()->route('list');
   }
-
-  DB::table('products')->insert([
-      'product_name' => $request->input('product_name'),
-      'company_id' => $request->input('company_id'),
-      'price' => $request->input('price'),
-      'stock' => $request->input('stock'),
-      'comment' => $request->input('comment'),
-      'img_path' => $img_path
-  ]);
-  $image = $request->file('image');
-  if ($image) {
-      $file_name = $image->getClientOriginalName();
-      $image->storeAs('public/images', $file_name);
-      $img_path = 'storage/images/' . $file_name;
-  } else {
-      $img_path = null;
-  }
-
-    $product_model = new Product();
-    DB::beginTransaction();
-    try {
-        $product_model->getSubmit($request, $img_path); 
-        DB::commit();
-  } catch (\Exception $e) {
-        DB::rollback();
-        Log::error('Product submit error: ' . $e->getMessage());
-        return back()->withErrors(['error' => 'Product submit failed']);
-  }
-  return redirect()->route('list');
-}
 
   //削除
   public function delete($id){

@@ -11,12 +11,12 @@ class Product extends Model
 
 {
     protected $table = ['products'];
+
     //login
     public function getlogin(){
         $products = DB::table('products')->get();
         return $products;
     }
-   
     //register処理
     public function getregister(){
         $products = DB::table('products')->get();
@@ -52,7 +52,7 @@ class Product extends Model
          }
          $products = $query->get();
          return $products;
-     }
+    }
     //詳細
     public function getdetail($id) {
         $products = DB::table('products')
@@ -91,9 +91,8 @@ class Product extends Model
         $products = DB::table('products')->get();
         return $products;
     }
-     //新規登録処理
-       public function getSubmit($request, $img_path = null)
-    {
+     //新規登録処理submit
+       public function getSubmit($request, $img_path = null){
         // データの挿入
         DB::table('products')->insert([
             'product_name' => $request->input('product_name'),
@@ -107,7 +106,7 @@ class Product extends Model
       //削除
      public function deleteProduct($id){
         DB::table('products')->where('id', '=', $id)->delete($id);
-     }
+    }
 }
 
     
