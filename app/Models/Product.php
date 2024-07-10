@@ -93,10 +93,9 @@ class Product extends Model
     }
      //新規登録処理submit
        public function getSubmit($request, $img_path = null){
-        // データの挿入
         DB::table('products')->insert([
             'product_name' => $request->input('product_name'),
-            'company_id' => $request->input('company_id'), // 修正
+            'company_id' => $request->input('company_id'), 
             'price' => $request->input('price'),
             'stock' => $request->input('stock'),
             'comment' => $request->input('comment'),

@@ -13,7 +13,7 @@ class OneRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,13 @@ class OneRequest extends FormRequest
      */
     public function rules()
     {
+        return [
+            'title' => 'required | max:255',
+            'url' => 'required | max:255 | url',
+            'comment' => 'max:10000',
+        ];
+    }
+    public function messages(){
         return [
             'mail_adress.required' => 'メールアドレスは入力は必須です。',
             'password.required'    => 'パスワードは入力は必須です。',

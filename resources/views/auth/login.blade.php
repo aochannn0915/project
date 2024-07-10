@@ -5,7 +5,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <!-- <div class="card-header">{{ __('Login') }}</div> -->
             <h1>ユーザーログイン画面</h1>
                 <div class="card-body">
                     <form action="{{ route('login') }}" method="GET" enctype='multipart/form-data'>
@@ -55,7 +54,6 @@
                             <div class="col-md-8 offset-md-4">
                                 <th><a href="{{route('list')}}">ログイン</a></th>
                                 <th><a href="{{route('register')}}">新規登録</a></th>
-                                <!-- <td><input type="submit" value="新規登録" ></td> -->
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}
