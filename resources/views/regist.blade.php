@@ -15,6 +15,9 @@
                 <div class="form-group">
                     <td><label for="product_name">商品名*</label></td>
                     <td><input type="text" class="form-inline" name="product_name" value="{{old('product_name')}}"></td>
+                    @if($errors->has('product_name'))
+                        <p>{{ $errors->first('product_name') }}</p>
+                    @endif
                 </div>
                 </tr>
                 <tr>
@@ -30,19 +33,28 @@
                 <tr>
                 <div class="form-group">
                     <td><label for="price">価格*</label></td>
-                    <td><input type="text" class="form-inline" name="price" value="{{old('price')}}"></td> 
+                    <td><input type="text" class="form-inline" name="price" value="{{old('price')}}"></td>
+                    @if($errors->has('price'))
+                        <p>{{ $errors->first('price') }}</p>
+                    @endif 
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="stock">在庫数*</label></td>
                     <td><input type="text" class="form-inline" name="stock" value="{{old('stock')}}"></td>
+                    @if($errors->has('stock'))
+                        <p>{{ $errors->first('stock') }}</p>
+                    @endif
                 </div>
                 </tr>
                 <tr>
                 <div class="form-group">
                     <td><label for="comment">コメント</label></td>
                     <td><input textarea type="text" class="form-inline"id="comment" name="comment" value="{{old('comment')}}"></textarea></td>
+                    @if($errors->has('comment'))
+                        <p>{{ $errors->first('comment') }}</p>
+                    @endif
                 </div>
                 </tr>
                 <tr>

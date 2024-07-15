@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Company;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\OneRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -61,7 +61,7 @@ class ProductController extends Controller
       return view('edit', ['products' => $products,'companies' => $companies]);
 }
   //更新処理updateSubmit
-  public function updateSubmit(Request $request, $id){
+  public function updateSubmit(OneRequest $request, $id){
      $model= new Product();
       DB::beginTransaction();
       try {
@@ -92,7 +92,7 @@ class ProductController extends Controller
 }
    
     // 登録処理 
-  public function submit(Request $request){
+  public function submit(OneRequest $request){
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
         $img_path = $request->file('img_path')->store('images', 'public');
     } else {

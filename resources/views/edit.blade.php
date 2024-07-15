@@ -12,10 +12,16 @@
               <tr>
                     <td><label for="id">id</label></td>
                     <td>{{ $products->id }}</td>
+                    @if($errors->has('id'))
+                        <p>{{ $errors->first('id') }}</p>
+                    @endif
               <tr>
                     <td><label for="product_name">商品名*</label></td>
                     <td><input type="text" class="form-inline"  name="product_name" value="{{$products -> product_name}}"></td>
-              </tr>
+                    @if($errors->has('product_name'))
+                        <p>{{ $errors->first('product_name') }}</p>
+                    @endif              
+             </tr>
               <tr>
                     <td> <label for="company_name">メーカー名*</label></td>
                     <td>
@@ -29,14 +35,23 @@
               <tr>
                     <td><label for="price">価格*</label></td>
                     <td><input type="text" class="form-inline" name="price" value="{{$products -> price}}"></td>
+                    @if($errors->has('price'))
+                        <p>{{ $errors->first('price') }}</p>
+                    @endif
               </tr>
               <tr>
                     <td><label for="stock">在庫数*</label></td>
                     <td><input type="text" class="form-inline" name="stock" value="{{$products -> stock}}"></td> 
+                    @if($errors->has('stock'))
+                        <p>{{ $errors->first('stock') }}</p>
+                    @endif
               </tr>
               <tr>
                     <td><label for="comment">コメント</label></td>
                     <td><input type="text" class="form-inline"name="comment" value="{{$products -> comment}}"></td>
+                    @if($errors->has('comment'))
+                        <p>{{ $errors->first('comment') }}</p>
+                    @endif
               </tr>
               <tr>
                 
