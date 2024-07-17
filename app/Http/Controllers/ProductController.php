@@ -61,7 +61,7 @@ class ProductController extends Controller
       return view('edit', ['products' => $products,'companies' => $companies]);
 }
   //更新処理updateSubmit
-  public function updateSubmit(OneRequest $request, $id){
+  public function updateSubmit(Request $request, $id){
      $model= new Product();
       DB::beginTransaction();
       try {
@@ -92,7 +92,7 @@ class ProductController extends Controller
 }
    
     // 登録処理 
-  public function submit(OneRequest $request){
+  public function submit(Request $request){
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
         $img_path = $request->file('img_path')->store('images', 'public');
     } else {
