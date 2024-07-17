@@ -86,6 +86,16 @@ class Product extends Model
         ]);
           return $products;
     }
+    // 処理
+    public function updataOne($data) {
+        DB::table('one')->insert([
+            'product_name'=>$data->product_name,
+            'company_name'=>$data->company_name,
+            'price'       =>$data->price,
+            'stock'       =>$data->stock,
+            'comment'     =>$data->comment,
+        ]);
+    }
       //新規登録画面regist
     public function getregist() {
         $products = DB::table('products')->get();
@@ -100,6 +110,16 @@ class Product extends Model
             'stock' => $request->input('stock'),
             'comment' => $request->input('comment'),
             'img_path' => $img_path
+        ]);
+    }
+    // 登録処理
+    public function submitOne($data) {
+        DB::table('one')->insert([
+            'product_name'=>$data->product_name,
+            'company_name'=>$data->company_name,
+            'price'       =>$data->price,
+            'stock'       =>$data->stock,
+            'comment'     =>$data->comment,
         ]);
     }
       //削除

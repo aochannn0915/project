@@ -61,7 +61,7 @@ class ProductController extends Controller
       return view('edit', ['products' => $products,'companies' => $companies]);
 }
   //更新処理updateSubmit
-  public function updateSubmit(Request $request, $id){
+  public function updateSubmit(OneRequest $request, $id){
      $model= new Product();
       DB::beginTransaction();
       try {
@@ -74,6 +74,7 @@ class ProductController extends Controller
      }else{
           $model->updateSubmitNoImg($request,$id);
      } 
+          $model->updataOne($data);
       DB::commit();
       } catch (\Exception $e) {
         \Log::error($e);
@@ -92,7 +93,7 @@ class ProductController extends Controller
 }
    
     // 登録処理 
-  public function submit(Request $request){
+  public function submit(OneRequest $request){
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
         $img_path = $request->file('img_path')->store('images', 'public');
     } else {
@@ -110,6 +111,7 @@ class ProductController extends Controller
       DB::beginTransaction();
       try {
           $product_model->getSubmit($request, $img_path); 
+          $model->submitOne($data);
           DB::commit();
     } catch (\Exception $e) {
           DB::rollback();
