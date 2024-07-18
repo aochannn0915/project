@@ -6,7 +6,7 @@
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         
             <h1>商品情報編集画面</h1>
-            <form action="{{ route('updateSubmit', ['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('updateSubmit',['id' => $products-> id]) }}" method="POST" enctype="multipart/form-data">
                 @csrf
             <table>
               <tr>

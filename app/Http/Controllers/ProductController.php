@@ -62,19 +62,19 @@ class ProductController extends Controller
 }
   //更新処理updateSubmit
   public function updateSubmit(OneRequest $request, $id){
-     $model= new Product();
-      DB::beginTransaction();
-      try {
-          $image = $request->file('image');
-        if($image){
+    if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
+         $image = $request->file('image');
           $file_name = $image->getClientOriginalName();
           $image->storeAs('public/images', $file_name);
           $img_path = 'storage/images/' . $file_name;
-          $products= $model->updateSubmit($request, $id, $img_path);
      }else{
-          $model->updateSubmitNoImg($request,$id);
+      $img_path=null;
      } 
-          $model->updataOne($data);
+     $model= new Product();
+     $model->updateOne($request);
+     DB::beginTransaction();
+     try {
+      $products= $model->updateSubmit($request, $id, $img_path);
       DB::commit();
       } catch (\Exception $e) {
         \Log::error($e);
@@ -95,12 +95,7 @@ class ProductController extends Controller
     // 登録処理 
   public function submit(OneRequest $request){
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
-        $img_path = $request->file('img_path')->store('images', 'public');
-    } else {
-        $img_path = null; 
-    }
-    $image = $request->file('image');
-    if ($image) {
+        $image = $request->file('image');
         $file_name = $image->getClientOriginalName();
         $image->storeAs('public/images', $file_name);
         $img_path = 'storage/images/' . $file_name;
@@ -111,7 +106,6 @@ class ProductController extends Controller
       DB::beginTransaction();
       try {
           $product_model->getSubmit($request, $img_path); 
-          $model->submitOne($data);
           DB::commit();
     } catch (\Exception $e) {
           DB::rollback();

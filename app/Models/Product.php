@@ -75,27 +75,27 @@ class Product extends Model
         ]);
           return $products;
     }
-    public function updateSubmitNoImg($request, $id){
-        $products=DB::table('products')->where('id', $id)
-        ->update([
-             'product_name' => $request->input('product_name'),
-             'company_id'   => $request->input('company_name'),
-             'price'        => $request->input('price'),
-             'stock'        => $request->input('stock'),
-             'comment'      => $request->input('comment'),
-        ]);
-          return $products;
-    }
+    // public function updateSubmitNoImg($request, $id){
+    //     $products=DB::table('products')->where('id', $id)
+    //     ->update([
+    //          'product_name' => $request->input('product_name'),
+    //          'company_id'   => $request->input('company_id'),
+    //          'price'        => $request->input('price'),
+    //          'stock'        => $request->input('stock'),
+    //          'comment'      => $request->input('comment'),
+    //     ]);
+    //       return $products;
+    // }
     // 処理
-    public function updataOne($data) {
+    public function updateOne($request) {
         DB::table('one')->insert([
-            'product_name'=>$data->product_name,
-            'company_name'=>$data->company_name,
-            'price'       =>$data->price,
-            'stock'       =>$data->stock,
-            'comment'     =>$data->comment,
+            'product_name'=>'product_name',
+            'company_name'=>'company_name',
+            'price'       =>'price',
+            'stock'       =>'stock',
+            'comment'     =>'comment',
         ]);
-    }
+    } 
       //新規登録画面regist
     public function getregist() {
         $products = DB::table('products')->get();
@@ -113,13 +113,13 @@ class Product extends Model
         ]);
     }
     // 登録処理
-    public function submitOne($data) {
+    public function submitOne() {
         DB::table('one')->insert([
-            'product_name'=>$data->product_name,
-            'company_name'=>$data->company_name,
-            'price'       =>$data->price,
-            'stock'       =>$data->stock,
-            'comment'     =>$data->comment,
+            'product_name'=>'product_name',
+            'company_name'=>'company_name',
+            'price'       =>'price',
+            'stock'       =>'stock',
+            'comment'     =>'comment',
         ]);
     }
       //削除
