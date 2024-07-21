@@ -95,7 +95,7 @@ class ProductController extends Controller
     // 登録処理 
   public function submit(OneRequest $request){
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
-        $image = $request->file('image');
+        $image = $request->file('image_path');
         $file_name = $image->getClientOriginalName();
         $image->storeAs('public/images', $file_name);
         $img_path = 'storage/images/' . $file_name;
