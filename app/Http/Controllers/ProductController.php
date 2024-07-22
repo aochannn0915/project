@@ -62,24 +62,22 @@ class ProductController extends Controller
 }
   //更新処理updateSubmit
   public function updateSubmit(OneRequest $request, $id){
+    $img_path=null; 
     if ($request->hasFile('img_path') && $request->file('img_path')->isValid()) {
-         $image = $request->file('image');
+         $image = $request->file('img_path');
           $file_name = $image->getClientOriginalName();
           $image->storeAs('public/images', $file_name);
           $img_path = 'storage/images/' . $file_name;
-     }else{
-      $img_path=null;
-     } 
-     $model= new Product();
-     $model->updateOne($request);
+     }
      DB::beginTransaction();
      try {
-      $products= $model->updateSubmit($request, $id, $img_path);
+      $model=new Product();
+      $model->updateOne($request, $id, $img_path);
       DB::commit();
       } catch (\Exception $e) {
         \Log::error($e);
             DB::rollback();
-            return back();
+            return back()->withErrors(['error' =>'更新処理中にエラーが発生しました。']);
       }
      return redirect()->route('edit',['id'=> $id]);
 }

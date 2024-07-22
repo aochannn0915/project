@@ -23,11 +23,14 @@
                     @endif              
              </tr>
               <tr>
-                    <td> <label for="company_name">メーカー名*</label></td>
                     <td>
-                    <select class="company_name" name="company_name"> 
+                    <label>メーカー*</label>
+                    <td>
+                    <select class="company_id" name="company_id"> 
                         @foreach($companies as $company)
-                        <option value="{{ $company -> name }}"></option>
+                        <option value="{{ $company -> id }}" {{ $company->id == $products->company_id ? 'selected' : '' }}>
+                         {{ $company -> company_name }}
+                        </option>
                         @endforeach
                     </select>
                     </td>

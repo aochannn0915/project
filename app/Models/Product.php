@@ -75,26 +75,18 @@ class Product extends Model
         ]);
           return $products;
     }
-    // public function updateSubmitNoImg($request, $id){
-    //     $products=DB::table('products')->where('id', $id)
-    //     ->update([
-    //          'product_name' => $request->input('product_name'),
-    //          'company_id'   => $request->input('company_id'),
-    //          'price'        => $request->input('price'),
-    //          'stock'        => $request->input('stock'),
-    //          'comment'      => $request->input('comment'),
-    //     ]);
-    //       return $products;
-    // }
+   
     // 処理
-    public function updateOne($request) {
-        DB::table('one')->insert([
-            'product_name'=>'product_name',
-            'company_name'=>'company_name',
-            'price'       =>'price',
-            'stock'       =>'stock',
-            'comment'     =>'comment',
+    public function updateOne($request, $id, $img_path ){
+        $products= DB::table('products')->where('id', $id)->update([
+            'product_name'=>$request->input('product_name'),
+            'company_id'=>$request->input('company_id'),
+            'price'       =>$request->input('price'),
+            'stock'       =>$request->input('stock'),
+            'comment'     =>$request->input('comment'),
+            'img_path'    =>$img_path
         ]);
+        return $products;
     } 
       //新規登録画面regist
     public function getregist() {
